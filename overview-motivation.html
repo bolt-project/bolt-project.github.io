@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Local</title>
+  <title>Motivation</title>
   
 
   
@@ -36,8 +36,9 @@
 
   
     <link rel="top" title="None" href="index.html"/>
-        <link rel="next" title="Overview" href="local-overview.html"/>
-        <link rel="prev" title="Methods" href="spark-api.html"/> 
+        <link rel="up" title="Overview" href="overview.html"/>
+        <link rel="next" title="Design" href="overview-design.html"/>
+        <link rel="prev" title="Overview" href="overview.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -77,8 +78,8 @@
           
           
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Overview</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Motivation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-design.html">Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-construction.html">Construction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#detailed-api">Detailed API</a></li>
@@ -97,7 +98,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Local</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="local.html">Local</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="local-overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="local-api.html">Methods</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="local-api.html#detailed-api">Detailed API</a></li>
@@ -129,11 +130,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Local</li>
+          <li><a href="overview.html">Overview</a> &raquo;</li>
+      
+    <li>Motivation</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/local.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/overview-motivation.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -142,14 +145,13 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="local">
-<h1>Local<a class="headerlink" href="#local" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="local-overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="local-api.html">Methods</a></li>
-</ul>
-</div>
+  <div class="section" id="motivation">
+<h1>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
+<p>We and others have worked with ndarrays in both local and distributed environments across multiple languages. New distributed computing platforms, especially Spark, have made it easy and flexible to implement distributed workflows, and scale well to potentially massive data sets. But these technologies do not provide much benefit, and may even slow down, workflows on smaller or medium sized data sets.</p>
+<p>We want to be able to build projects on an ndarray-like interface and know that we can leverage either local or distributed operations under the hood. And we want to target Python because of its rich libaries for scientific computing and machine learning.</p>
+<p>For local computation, Python already offers a powerful multidimensional array abstraction, numpy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code>.</p>
+<p>For distributed computation, Spark&#8217;s <code class="docutils literal"><span class="pre">RDD</span></code> (resiliant distributed dataset) provides an elegant API for functional operations (<code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">reduce</span></code>, <code class="docutils literal"><span class="pre">join</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, etc.), but is not straightforward to work with as an <code class="docutils literal"><span class="pre">ndarray</span></code>, leaving many other projects to invent the neccessary abstractions. For example, in working on <a class="reference external" href="https://github.com/thunder-project/thunder">Thunder</a>, we implemented ndarray-like manipulations on distributed collections of key-value pairs, for the purpose of image and time series processing. Variants on this idea were also developed as part of <a class="reference external" href="https://github.com/ogrisel/spylearn">spylearn</a>, and now <a class="reference external" href="https://github.com/lensacom/sparkit-learn">sparkit-learn</a>.</p>
+<p>One of the goals of Bolt is to solve this problem once well, so that others can build on top of it. If you have a project that could leverage this functionality, come <a class="reference external" href="https://gitter.im/bolt-project/bolt">chat</a> with us!</p>
 </div>
 
 
@@ -158,10 +160,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="local-overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview-design.html" class="btn btn-neutral float-right" title="Design" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="spark-api.html" class="btn btn-neutral" title="Methods" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

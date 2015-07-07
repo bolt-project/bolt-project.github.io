@@ -16,6 +16,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
 
   
 
@@ -36,7 +38,7 @@
 
   
     <link rel="top" title="None" href="#"/>
-        <link rel="next" title="Intro" href="intro.html"/> 
+        <link rel="next" title="Overview" href="overview.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -76,17 +78,32 @@
           
           
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-construction.html">Construction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview-construction.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="spark.html">Spark</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="spark-overview.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="spark-construction.html">Construction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="spark-api.html">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-api.html">Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="local.html">Local</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="local-overview.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local-construction.html">Construction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="local-api.html">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local-api.html">Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="local-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -126,10 +143,12 @@
 </div>
           <div role="main" class="document">
             
-  <img src='_static/header-logo.svg' width=700></img><p>Description description description</p>
+  <img src='_static/header-logo.svg' width=700></img><p>Multidimensional arrays are core to a wide variety of applications. Some are well-suited to single machines, especially when datasets fit in memory. Others can benefit from distributed computing, especially for out-of-memory datasets and complex workflows. We see need for a single interface for using multidimensional arrays across these settings.</p>
+<p>Bolt is a Python project currently built on numpy and Spark. Its primary object exposes ndarray operations through either local implementations (with numpy) or distributed operations (with Spark), and makes it easy to switch between them. The distributed operations leverage efficient data structures for multidimemsional array manipulation, and aim to support most of the familiar ndarray interface in a distributed setting.</p>
+<p>This documentation is split into a general overview, and detailed descriptions of the <code class="docutils literal"><span class="pre">local</span></code> and <code class="docutils literal"><span class="pre">spark</span></code> implementations.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spark.html">Spark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="local.html">Local</a></li>
 </ul>
@@ -141,7 +160,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="intro.html" class="btn btn-neutral float-right" title="Intro" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
