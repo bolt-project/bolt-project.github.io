@@ -82,6 +82,9 @@
 <li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-design.html">Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-construction.html">Construction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview-construction.html#local">Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview-construction.html#spark">Spark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview-construction.html#examples">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#detailed-api">Detailed API</a></li>
 </ul>
 </li>
@@ -147,7 +150,10 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>Overview of Spark Bolt arrays</p>
+<p>The Spark implementation of the bolt array uses an RDD of <code class="docutils literal"><span class="pre">key,value</span></code> pairs to represent different parts of a multi-dimensional array. We express common ndarray operations through distributed operatiions on this RDD, and keep track of shape parameters and how they are affected by manipulations.</p>
+<p>The data structure is defined by which axes are represented in the keys, and which are represented in the values. The <code class="docutils literal"><span class="pre">keys</span></code> are tuples and the <code class="docutils literal"><span class="pre">values</span></code> are arrays. You can think of each key as providing an index along a subset of axes. Ordering doesn&#8217;t matter, but the RDD will be sorted before converting into a local array to ensure the correct shape.</p>
+<p>Most operations are lazy, except where it is neccessary to perform a computation before proceeding, usually because the shape of the resulting object depends on evaluation (e.g. in <code class="docutils literal"><span class="pre">filter</span></code>).</p>
+<p>As part of the core API, we expose the functional operators <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, and <code class="docutils literal"><span class="pre">reduce</span></code>, which are like their counterparts on the RDD except with the additional ability to apply along a specified set of axes. In addition, the Spark methods <code class="docutils literal"><span class="pre">cache</span></code> and <code class="docutils literal"><span class="pre">unpersist</span></code> are available to control the cacheing of the underlying RDD, which can speed up certain workflows by storing raw data or intermediate results in distributed memory. We do not expose all other Spark operations so as to ensure manipulations that generate valid bolt arrays. However, the underlying RDD can always be accessed by developers via the <code class="docutils literal"><span class="pre">tordd()</span></code> method.</p>
 </div>
 
 

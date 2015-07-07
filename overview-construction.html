@@ -82,6 +82,9 @@
 <li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-design.html">Design</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Construction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#local">Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spark">Spark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#detailed-api">Detailed API</a></li>
 </ul>
 </li>
@@ -147,6 +150,8 @@
             
   <div class="section" id="construction">
 <h1>Construction<a class="headerlink" href="#construction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="local">
+<h2>Local<a class="headerlink" href="#local" title="Permalink to this headline">¶</a></h2>
 <p>Constructing local bolt arrays is nearly identical to using <code class="docutils literal"><span class="pre">numpy</span></code>&#8216;s constructors.</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -168,6 +173,9 @@
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="spark">
+<h2>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">¶</a></h2>
 <p>Constructing bolt arrays in Spark is similar, except the constructors must be provided with a <code class="docutils literal"><span class="pre">SparkContext</span></code>. This is normally provided when running Spark interactively, or created at the beginning of a Spark job. In addition, you can specify which axes will be distributed. Briefly, arrays are represented using a subset of axes as the keys. So a five dimensional array specified with <code class="docutils literal"><span class="pre">axis=(0,</span> <span class="pre">1)</span></code> would be represented as <code class="docutils literal"><span class="pre">key,value</span></code> pairs where the keys are two-tuples and the values are three-dimensional arrays. Bolt is designed so that its methods are invariant to the choice of distributed axes, but the choice will affect performance of many operations.</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -189,7 +197,10 @@
 </tr>
 </tbody>
 </table>
-<p>Example comparing local and distributed constructors</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Comparing local and distributed constructors</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">blt</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 4)</span>
@@ -204,7 +215,7 @@
 <span class="go">spark</span>
 </pre></div>
 </div>
-<p>Example comparing different axis choices</p>
+<p>Comparing different axis choices</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">blt</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 4)</span>
@@ -217,6 +228,7 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">blt</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 4)</span>
 </pre></div>
+</div>
 </div>
 <div class="section" id="detailed-api">
 <h2>Detailed API<a class="headerlink" href="#detailed-api" title="Permalink to this headline">¶</a></h2>

@@ -80,6 +80,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../overview-motivation.html">Motivation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../overview-design.html">Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../overview-construction.html">Construction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overview-construction.html#local">Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overview-construction.html#spark">Spark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overview-construction.html#examples">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../overview-construction.html#detailed-api">Detailed API</a></li>
 </ul>
 </li>
@@ -733,7 +736,7 @@
             <span class="n">p</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">(</span><span class="n">argpack</span><span class="p">(</span><span class="n">axes</span><span class="p">))</span>
-            
+
         <span class="n">istransposeable</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="p">))</span>
 
         <span class="n">split</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">split</span>
