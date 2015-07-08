@@ -88,7 +88,7 @@
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#detailed-api">Detailed API</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
 </ul>
 </li>
@@ -151,9 +151,99 @@
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>The Spark implementation of the bolt array uses an RDD of <code class="docutils literal"><span class="pre">key,value</span></code> pairs to represent different parts of a multi-dimensional array. We express common ndarray operations through distributed operatiions on this RDD, and keep track of shape parameters and how they are affected by manipulations.</p>
-<p>The data structure is defined by which axes are represented in the keys, and which are represented in the values. The <code class="docutils literal"><span class="pre">keys</span></code> are tuples and the <code class="docutils literal"><span class="pre">values</span></code> are arrays. You can think of each key as providing an index along a subset of axes. Ordering doesn&#8217;t matter, but the RDD will be sorted before converting into a local array to ensure the correct shape.</p>
-<p>Most operations are lazy, except where it is neccessary to perform a computation before proceeding, usually because the shape of the resulting object depends on evaluation (e.g. in <code class="docutils literal"><span class="pre">filter</span></code>).</p>
-<p>As part of the core API, we expose the functional operators <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, and <code class="docutils literal"><span class="pre">reduce</span></code>, which are like their counterparts on the RDD except with the additional ability to apply along a specified set of axes. In addition, the Spark methods <code class="docutils literal"><span class="pre">cache</span></code> and <code class="docutils literal"><span class="pre">unpersist</span></code> are available to control the cacheing of the underlying RDD, which can speed up certain workflows by storing raw data or intermediate results in distributed memory. We do not expose all other Spark operations so as to ensure manipulations that generate valid bolt arrays. However, the underlying RDD can always be accessed by developers via the <code class="docutils literal"><span class="pre">tordd()</span></code> method.</p>
+<p>If we start by creating an array</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">blt</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>we can inspect its properties</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">numpy.float64</span>
+</pre></div>
+</div>
+<p>compute reductions</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="go">24.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(3, 4)</span>
+</pre></div>
+</div>
+<p>or move axes around</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(4, 2, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(3, 2, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(4, 3, 2)</span>
+</pre></div>
+</div>
+<p>The data structure is defined by which axes are represented in the keys, and which are represented in the values. The <code class="docutils literal"><span class="pre">keys</span></code> are tuples and the <code class="docutils literal"><span class="pre">values</span></code> are ndarrays. You can think of each key as providing an index along a subset of axes. We call the axis at which we switch from keys to values the <code class="docutils literal"><span class="pre">split</span></code>.</p>
+<p>It&#8217;s easy to inspect the &#8220;shape&#8221; of either part</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">split</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(3, 4)</span>
+</pre></div>
+</div>
+<p>and change the form of paralleization during construction</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">split</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(4,)</span>
+</pre></div>
+</div>
+<p>The generic <code class="docutils literal"><span class="pre">swap</span></code> operation moves axes between the keys and the values</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">swap</span><span class="p">((),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2,3)</span>
+</pre></div>
+</div>
+<p>in this case the array itself didn&#8217;t change dimension, we only changed the parallelization</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+</pre></div>
+</div>
+<p>The user-facing <code class="docutils literal"><span class="pre">transpose</span></code> and <code class="docutils literal"><span class="pre">reshape</span></code> rely on <code class="docutils literal"><span class="pre">swap</span></code> to do their reorganization.</p>
+<p>Ordering does not matter, but the RDD will be sorted before converting into a local array to ensure correct structure</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+<span class="go">array([ 6.,  6.,  6.,  6.])</span>
+</pre></div>
+</div>
+<p>As part of the <a class="reference external" href="overview-design.html">core API</a>, we expose the functional operators <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, and <code class="docutils literal"><span class="pre">reduce</span></code>, which are like their counterparts on the RDD except with the additional ability to be applied along a specified set of axes.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, )</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3)</span>
+</pre></div>
+</div>
+<p>We do not expose other Spark operations in order to ensure that manipulations generate valid bolt arrays. However, the underlying RDD can always be accessed by developers via the <code class="docutils literal"><span class="pre">tordd()</span></code> method.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">todd</span><span class="p">()</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="go">[((0,), array([ 1.,  1.,  1.])), ((1,), array([ 1.,  1.,  1.]))]</span>
+</pre></div>
+</div>
+<p>In addition, the Spark methods <code class="docutils literal"><span class="pre">cache</span></code> and <code class="docutils literal"><span class="pre">unpersist</span></code> are available to control the caching of the underlying RDD, which can speed up certain workflows by storing raw data or intermediate results in distributed memory.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">tordd</span><span class="p">()</span><span class="o">.</span><span class="n">is_cached</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Most operations are lazy, except where it is neccessary to perform a computation before proceeding &#8211; usually because the shape of the resulting object depends on evaluation (e.g. in <code class="docutils literal"><span class="pre">filter</span></code>).</p>
+<p>For more info, read the <a class="reference external" href="spark-design.html">design</a> section for details on implementation, and see the full <a class="reference external" href="spark-api.html">API documentation</a>.</p>
 </div>
 
 

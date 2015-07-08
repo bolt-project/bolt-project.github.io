@@ -88,7 +88,7 @@
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#detailed-api">Detailed API</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
 </ul>
 </li>
@@ -150,6 +150,17 @@
             
   <div class="section" id="design">
 <h1>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
+<p>Here we delve into the core design underlying the Spark bolt array. Our considerations were based on our experiences working with ndarray-like objects in Spark.</p>
+<ul class="simple">
+<li>we usually want to parallelize operations across one or more axes, e.g. fitting a model to each of several features, filtering each of several images</li>
+<li>we want to easily and quickly change which axes we want to parallelize over</li>
+<li>we want to chain basic functional parallel operators with ndarray-style manipulations</li>
+</ul>
+<p>In Spark, our primitive is a distributed collection of <code class="docutils literal"><span class="pre">key,value</span></code> pairs, so we designed an object in which the keys and values separately represent different dimensions of a single array.</p>
+<p>To make axis swapping efficient, we...</p>
+<p>Describe chunking</p>
+<p>Describe transposing / reshaping</p>
+<p>Describe stacking (useful alternate representation for some workflows)</p>
 </div>
 
 

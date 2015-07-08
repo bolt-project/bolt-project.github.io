@@ -88,7 +88,7 @@
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#detailed-api">Detailed API</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
 </ul>
 </li>
@@ -152,7 +152,7 @@
 <h1>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
 <p>The base object in <code class="docutils literal"><span class="pre">bolt</span></code> defines a core set of ndarray functionality, as well as a subset functional operators. Different implementations are provided for different settings. The current ones are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">bolt.local</span></code> for local computation</li>
+<li><code class="docutils literal"><span class="pre">bolt.local</span></code> for local computation with NumPy</li>
 <li><code class="docutils literal"><span class="pre">bolt.spark</span></code> for distributed computation with Spark</li>
 </ul>
 <p>The core methods currently avaialble on all <code class="docutils literal"><span class="pre">bolt</span></code> arrays are as follows.</p>
@@ -235,7 +235,7 @@
 </tbody>
 </table>
 <p>And also slicing (e.g. <code class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">0:100]</span></code>, <code class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">:]</span></code>) and indexing (e.g. <code class="docutils literal"><span class="pre">x[[0,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">3]]</span></code>)</p>
-<p>We aim to replicate a large fraction of the Numpy API, so if there&#8217;s somewhere we&#8217;re missing that you&#8217;d be interested in having, or something you&#8217;d like to contribute, create an issue.</p>
+<p>We aim to replicate a large fraction of the NumPy API, so if there is something that we are missing that you would be interested in having, or something that you would like to contribute, create an issue.</p>
 <p>For further details on the implementations, as well as functionality specific to the different modes, see the documentation for <code class="docutils literal"><span class="pre">bolt.spark</span></code> and <code class="docutils literal"><span class="pre">bolt.local</span></code>.</p>
 </div>
 

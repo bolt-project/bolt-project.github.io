@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Related projects</title>
+  <title>Related work</title>
   
 
   
@@ -88,7 +88,7 @@
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#detailed-api">Detailed API</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Related projects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Related work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
 </ul>
 </li>
@@ -135,7 +135,7 @@
       
           <li><a href="overview.html">Overview</a> &raquo;</li>
       
-    <li>Related projects</li>
+    <li>Related work</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -148,9 +148,10 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="related-projects">
-<h1>Related projects<a class="headerlink" href="#related-projects" title="Permalink to this headline">¶</a></h1>
-<p>Bolt is related to several other projects in the pydata + big data space, but hopefully fills a complementary role.</p>
+  <div class="section" id="related-work">
+<h1>Related work<a class="headerlink" href="#related-work" title="Permalink to this headline">¶</a></h1>
+<p>Bolt is related to sevelal complimentary projects in the pydata + big data space, but aims to play a unique role.</p>
+<p>As mentioned in <a class="reference external" href="overview-motivation.html">motivation</a>, several other projects have implemented aspects of ndarray style operations on Spark RDDs, including <a class="reference external" href="https://github.com/thunder-project/thunder">Thunder</a> (for image and time series processing) and <a class="reference external" href="https://github.com/ogrisel/spylearn">spylearn</a> and <a class="reference external" href="https://github.com/lensacom/sparkit-learn">sparkit-learn</a> (for machine learning). We hope that the Bolt array is a more general interface on which these and similar projects could build.</p>
 <p><a class="reference external" href="https://github.com/ContinuumIO/dask">Dask</a> is a complementary project that offers an alternative task scheduler / parallel execution engine to Spark, initially targeting single-machine multi-core workflows, and more recently supporting distributed implementations. It should be possible to provide a Dask backend, alongside local and Spark, for the Bolt array.</p>
 <p>Another related Python projet, <a class="reference external" href="https://github.com/ContinuumIO/Blaze">Blaze</a>, is more abstract and more ambitious, aiming to provide a common interface to a wide variety of data structures and backends. But in practice, we found it very difficult to achieve the ndarray-focused functionality we wanted here, and Spark integration was limited.</p>
 <p>On the JVM, the <a class="reference external" href="https://github.com/deeplearning4j/nd4j">ND4J</a> project is also trying to provide ndarray-like functionality that incorporates Spark, as well as leveraging GPUs. And the <a class="reference external" href="https://github.com/cloudera/spark-timeseries">spark-timeseries</a> project provides time series functionality to RDDs. And Spark itself has recently introduced a DataFrame API, which similarly enhances the RDD interface to be more data science friendly, but does not provide straightforward ndarray functionality. In some ways, our efforts here are similar but for ndarrays instead of DataFrames.</p>
