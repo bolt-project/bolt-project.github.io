@@ -80,7 +80,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-methods.html">Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-construction.html">Construction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#local">Local</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#spark">Spark</a></li>
@@ -150,7 +150,7 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>The Spark implementation of the bolt array uses an RDD of <code class="docutils literal"><span class="pre">key,value</span></code> pairs to represent different parts of a multi-dimensional array. We express common ndarray operations through distributed operatiions on this RDD, and keep track of shape parameters and how they are affected by manipulations.</p>
+<p>The Spark implementation of the Bolt array uses an RDD of <code class="docutils literal"><span class="pre">key,value</span></code> pairs to represent different parts of a multi-dimensional array. We express common ndarray operations through distributed operatiions on this RDD, and keep track of shape parameters and how they are affected by manipulations.</p>
 <p>If we start by creating an array</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">blt</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 </pre></div>
@@ -219,7 +219,7 @@
 <span class="go">array([ 6.,  6.,  6.,  6.])</span>
 </pre></div>
 </div>
-<p>As part of the <a class="reference external" href="overview-design.html">core API</a>, we expose the functional operators <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, and <code class="docutils literal"><span class="pre">reduce</span></code>, which are like their counterparts on the RDD except with the additional ability to be applied along a specified set of axes.</p>
+<p>As part of the <a class="reference external" href="overview-methods.html">core API</a>, we expose the functional operators <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, and <code class="docutils literal"><span class="pre">reduce</span></code>, which are like their counterparts on the RDD except with the additional ability to be applied along a specified set of axes.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 4)</span>
@@ -229,7 +229,7 @@
 <span class="go">(2, 3)</span>
 </pre></div>
 </div>
-<p>We do not expose other Spark operations in order to ensure that manipulations generate valid bolt arrays. However, the underlying RDD can always be accessed by developers via the <code class="docutils literal"><span class="pre">tordd()</span></code> method.</p>
+<p>We do not expose other Spark operations in order to ensure that manipulations generate valid Bolt arrays. However, the underlying RDD can always be accessed by developers via the <code class="docutils literal"><span class="pre">tordd()</span></code> method.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">todd</span><span class="p">()</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
 <span class="go">[((0,), array([ 1.,  1.,  1.])), ((1,), array([ 1.,  1.,  1.]))]</span>

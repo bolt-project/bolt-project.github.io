@@ -79,7 +79,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-methods.html">Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-construction.html">Construction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#local">Local</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#spark">Spark</a></li>
@@ -149,7 +149,7 @@
             
   <div class="section" id="methods">
 <h1>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h1>
-<p>The local bolt array implements the <a class="reference external" href="overview-design.html">core API</a>, as well as the extra methods highlighted here. Full method documentation can be found below (methods directly inherited from numpy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code> not shown).</p>
+<p>The local bolt array implements the <a class="reference external" href="overview-methods.html">core API</a>, as well as the extra methods highlighted here. Full method documentation can be found below (methods directly inherited from numpy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code> not shown).</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
@@ -294,13 +294,13 @@ require a transpose/reshape.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sc: SparkContext</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sc</strong> : SparkContext</p>
 <blockquote>
-<div><p>the SparkContext which will be used to create the BoltArraySpark</p>
+<div><p>The SparkContext which will be used to create the BoltArraySpark</p>
 </div></blockquote>
-<p><strong>axis: tuple or int, optional, default=0</strong></p>
+<p><strong>axis</strong> : tuple or int, optional, default=0</p>
 <blockquote>
-<div><p>the axis (or axes) across which this array will be parallelized</p>
+<div><p>The axis (or axes) across which this array will be parallelized</p>
 </div></blockquote>
 </td>
 </tr>
@@ -326,13 +326,13 @@ the array has that shape. Returns self otherwise.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sc: SparkContext</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sc</strong> : SparkContext</p>
 <blockquote>
-<div><p>the SparkContext which will be used to create the BoltArraySpark</p>
+<div><p>The SparkContext which will be used to create the BoltArraySpark</p>
 </div></blockquote>
-<p><strong>axis: tuple or int, optional, default=0</strong></p>
+<p><strong>axis</strong> : tuple or int, optional, default=0</p>
 <blockquote>
-<div><p>the axis (or axes) across which this array will be parallelized</p>
+<div><p>The axis (or axes) across which this array will be parallelized</p>
 </div></blockquote>
 </td>
 </tr>

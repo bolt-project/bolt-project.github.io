@@ -78,7 +78,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../overview-motivation.html">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../overview-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overview-methods.html">Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../overview-construction.html">Construction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../overview-construction.html#local">Local</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../overview-construction.html#spark">Spark</a></li>
@@ -175,32 +175,38 @@
     <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BoltArraySpark.cache"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.cache">[docs]</a>    <span class="k">def</span> <span class="nf">cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cache the underlying RDD in memory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">unpersist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="BoltArraySpark.unpersist"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.unpersist">[docs]</a>    <span class="k">def</span> <span class="nf">unpersist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove the underlying RDD from memory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="o">.</span><span class="n">unpersist</span><span class="p">()</span>
-
-<div class="viewcode-block" id="BoltArraySpark.stack"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.stack">[docs]</a>    <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stack_size</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="BoltArraySpark.stack"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.stack">[docs]</a>    <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Aggregates records of a distributed array.</span>
 
 <span class="sd">        Stacking should improve the performance of vectorized operations,</span>
-<span class="sd">        but the resulting Stacked object only exposes a restricted set</span>
+<span class="sd">        but the resulting StackedArray object only exposes a restricted set</span>
 <span class="sd">        of operations (e.g. map, reduce). The unstack method can be used</span>
 <span class="sd">        to restore the full bolt array.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        stack_size: int, optional, default=None</span>
+<span class="sd">        size : int, optional, default=None</span>
 <span class="sd">            The maximum size for each stack (number of original records),</span>
 <span class="sd">            will aggregate groups of records per partition up to this size.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Stacked</span>
+<span class="sd">        StackedArray</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">stk</span> <span class="o">=</span> <span class="n">StackedArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="n">stack_size</span><span class="o">=</span><span class="n">stack_size</span><span class="p">)</span>
+        <span class="n">stk</span> <span class="o">=</span> <span class="n">StackedArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">stk</span><span class="o">.</span><span class="n">_stack</span><span class="p">()</span>
 </div>
     <span class="k">def</span> <span class="nf">_align</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
@@ -219,7 +225,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        a swapped BoltArraySpark</span>
+<span class="sd">        BoltArraySpark</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c"># ensure that the specified axes are valid</span>
         <span class="n">inshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
@@ -706,18 +712,6 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">rdd</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">shape</span><span class="p">),</span> <span class="n">split</span><span class="o">=</span><span class="n">split</span><span class="p">)</span>
 </div>
-    <span class="k">def</span> <span class="nf">chunk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_axes</span><span class="p">,</span> <span class="n">value_axes</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">key_axes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value_axes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span>
-
-        <span class="kn">from</span> <span class="nn">bolt.spark.swap</span> <span class="kn">import</span> <span class="n">Swapper</span><span class="p">,</span> <span class="n">Dims</span>
-
-        <span class="n">k</span> <span class="o">=</span> <span class="n">Dims</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">key_axes</span><span class="p">)</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">Dims</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">value_axes</span><span class="p">)</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">Swapper</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="p">)</span>
-
 <div class="viewcode-block" id="BoltArraySpark.transpose"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.transpose">[docs]</a>    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">axes</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an array with the axes transposed.</span>
@@ -728,9 +722,8 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        axes : None, tuple of ints, or `n` ints</span>
+<span class="sd">        axes : None, tuple of ints, or n ints</span>
 <span class="sd">            If None, will reverse axis order.</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ndim</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -765,6 +758,9 @@
 </div>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">T</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Transpose by reversing the order of the axes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 
 <div class="viewcode-block" id="BoltArraySpark.swapaxes"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.swapaxes">[docs]</a>    <span class="k">def</span> <span class="nf">swapaxes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="p">):</span>
@@ -785,8 +781,18 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </div>
-    <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">shape</span><span class="p">):</span>
+<div class="viewcode-block" id="BoltArraySpark.reshape"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.reshape">[docs]</a>    <span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">shape</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return an array with the same data but a new shape.</span>
 
+<span class="sd">        Currently only supports reshaping that independently</span>
+<span class="sd">        reshapes the keys, or the values, or both.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shape :  tuple of ints, or n ints</span>
+<span class="sd">            New shape</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">new</span> <span class="o">=</span> <span class="n">argpack</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
         <span class="n">isreshapeable</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
@@ -799,14 +805,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">new_key_shape</span><span class="p">,</span> <span class="n">new_value_shape</span> <span class="o">=</span> <span class="n">new</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">new</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">new_key_shape</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">new_value_shape</span><span class="p">)</span>
-
+</div>
     <span class="k">def</span> <span class="nf">_reshapebasic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if the requested reshape can be broken into independant reshapes on the keys and values.</span>
 <span class="sd">        If it can, returns the index in the new shape separating keys from values.</span>
 <span class="sd">        If it cannot, returns -1</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="n">new</span> <span class="o">=</span> <span class="n">tupleize</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
         <span class="n">old_key_size</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="n">old_value_size</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -820,8 +825,15 @@
 
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="k">def</span> <span class="nf">squeeze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="BoltArraySpark.squeeze"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.squeeze">[docs]</a>    <span class="k">def</span> <span class="nf">squeeze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove one or more single-dimensional axes from the array.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        axis : tuple or int</span>
+<span class="sd">            One or more singleton axes to remove.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="n">d</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">]):</span>
             <span class="k">return</span> <span class="bp">self</span>
 
@@ -853,25 +865,52 @@
         <span class="n">shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">ss</span> <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">ss</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">if</span> <span class="n">ii</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">drop</span><span class="p">])</span>
         <span class="n">split</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span> <span class="k">if</span> <span class="n">d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">drop</span><span class="p">])</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">rdd</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">split</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="BoltArraySpark.astype"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.astype">[docs]</a>    <span class="k">def</span> <span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cast the array to a specified type.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dtype : str or dtype</span>
+<span class="sd">            Typecode or data-type to cast the array to (see numpy)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rdd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="o">.</span><span class="n">mapValues</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">rdd</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</div>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Size of each dimension.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Total number of elements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">prod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shape</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ndim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Number of dimensions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shape</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Axis at which the array is split into keys/values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">dtype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Data-type of array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dtype</span>
 
     <span class="nd">@property</span>
@@ -880,6 +919,9 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a restricted keys.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">bolt.spark.shapes</span> <span class="kn">import</span> <span class="n">Keys</span>
         <span class="k">return</span> <span class="n">Keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -888,25 +930,35 @@
         <span class="kn">from</span> <span class="nn">bolt.spark.shapes</span> <span class="kn">import</span> <span class="n">Values</span>
         <span class="k">return</span> <span class="n">Values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">tolocal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BoltArraySpark.tolocal"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.tolocal">[docs]</a>    <span class="k">def</span> <span class="nf">tolocal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a local bolt array by first collecting as an array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">bolt.local.array</span> <span class="kn">import</span> <span class="n">BoltArrayLocal</span>
         <span class="k">return</span> <span class="n">BoltArrayLocal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="BoltArraySpark.toarray"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.toarray">[docs]</a>    <span class="k">def</span> <span class="nf">toarray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the contents as a local array.</span>
 
-    <span class="k">def</span> <span class="nf">toarray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="sd">        Will likely cause memory problems for large objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="o">.</span><span class="n">sortByKey</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">tordd</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="BoltArraySpark.tordd"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.tordd">[docs]</a>    <span class="k">def</span> <span class="nf">tordd</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the underlying RDD of the bolt array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span>
-
-    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</div>
+<div class="viewcode-block" id="BoltArraySpark.display"><a class="viewcode-back" href="../../../spark-api.html#bolt.spark.array.BoltArraySpark.display">[docs]</a>    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show a pretty-printed representation of this BoltArrayLocal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
             <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
-        <span class="n">rdd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="o">.</span><span class="n">mapValues</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">rdd</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
-</pre></div>
+</pre></div></div></div>
 
           </div>
           <footer>

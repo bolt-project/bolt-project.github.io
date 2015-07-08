@@ -78,7 +78,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-methods.html">Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-construction.html">Construction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#local">Local</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#spark">Spark</a></li>
@@ -151,11 +151,14 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#F"><strong>F</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#Z"><strong>Z</strong></a>
  
@@ -173,6 +176,12 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.astype">astype() (bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
   </dl></td>
 </tr></table>
 
@@ -196,6 +205,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.cache">cache() (bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
+      
   <dt><a href="local-api.html#bolt.local.array.BoltArrayLocal.concatenate">concatenate() (bolt.local.array.BoltArrayLocal method)</a>
   </dt>
 
@@ -213,12 +226,12 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="overview-construction.html#bolt.local.construct.ConstructLocal">ConstructLocal (class in bolt.local.construct)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="overview-construction.html#bolt.spark.construct.ConstructSpark">ConstructSpark (class in bolt.spark.construct)</a>
   </dt>
@@ -231,6 +244,18 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="local-api.html#bolt.local.array.BoltArrayLocal.display">display() (bolt.local.array.BoltArrayLocal method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.display">(bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.dtype">dtype (bolt.spark.array.BoltArraySpark attribute)</a>
   </dt>
 
   </dl></td>
@@ -249,6 +274,16 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.keys">keys (bolt.spark.array.BoltArraySpark attribute)</a>
+  </dt>
+
   </dl></td>
 </tr></table>
 
@@ -277,6 +312,16 @@
 
       
   <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.min">min() (bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.ndim">ndim (bolt.spark.array.BoltArraySpark attribute)</a>
   </dt>
 
   </dl></td>
@@ -312,15 +357,39 @@
 
       </dl></dd>
   </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.reshape">reshape() (bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
+  </dl></td>
 </tr></table>
 
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.shape">shape (bolt.spark.array.BoltArraySpark attribute)</a>
+  </dt>
+
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.size">size (bolt.spark.array.BoltArraySpark attribute)</a>
+  </dt>
+
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.split">split (bolt.spark.array.BoltArraySpark attribute)</a>
+  </dt>
+
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.squeeze">squeeze() (bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
+      
   <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.stack">stack() (bolt.spark.array.BoltArraySpark method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.std">std() (bolt.spark.array.BoltArraySpark method)</a>
   </dt>
@@ -329,8 +398,6 @@
   <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.sum">sum() (bolt.spark.array.BoltArraySpark method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.swap">swap() (bolt.spark.array.BoltArraySpark method)</a>
   </dt>
@@ -346,25 +413,55 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.T">T (bolt.spark.array.BoltArraySpark attribute)</a>
+  </dt>
+
+      
   <dt><a href="local-api.html#bolt.local.array.BoltArrayLocal.toarray">toarray() (bolt.local.array.BoltArrayLocal method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.toarray">(bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.tolocal">tolocal() (bolt.spark.array.BoltArraySpark method)</a>
   </dt>
 
       
   <dt><a href="local-api.html#bolt.local.array.BoltArrayLocal.tordd">tordd() (bolt.local.array.BoltArrayLocal method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.tordd">(bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="local-api.html#bolt.local.array.BoltArrayLocal.toscalar">toscalar() (bolt.local.array.BoltArrayLocal method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="local-api.html#bolt.local.array.BoltArrayLocal.tospark">tospark() (bolt.local.array.BoltArrayLocal method)</a>
   </dt>
 
       
   <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.transpose">transpose() (bolt.spark.array.BoltArraySpark method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="spark-api.html#bolt.spark.array.BoltArraySpark.unpersist">unpersist() (bolt.spark.array.BoltArraySpark method)</a>
   </dt>
 
   </dl></td>

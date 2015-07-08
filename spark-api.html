@@ -80,7 +80,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-methods.html">Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview-construction.html">Construction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#local">Local</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overview-construction.html#spark">Spark</a></li>
@@ -150,33 +150,33 @@
             
   <div class="section" id="methods">
 <h1>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h1>
-<p>The Spark bolt array implements the <a class="reference external" href="overview-design.html">core API</a>, as well as the extra methods highlighted here. Full  documentation can be found below.</p>
+<p>The Spark bolt array implements the <a class="reference external" href="overview-methods.html">core API</a>, as well as the extra methods highlighted here. Some  are used to implement the core methods (e.g. <code class="docutils literal"><span class="pre">swap</span></code>) and may be of interest to developers. Others are Spark-specific convienience functions (e.g. <code class="docutils literal"><span class="pre">cache</span></code>). Full  documentation can be found below.</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.stack" title="bolt.spark.array.BoltArraySpark.stack"><code class="xref py py-obj docutils literal"><span class="pre">stack</span></code></a>([stack_size])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.stack" title="bolt.spark.array.BoltArraySpark.stack"><code class="xref py py-obj docutils literal"><span class="pre">stack</span></code></a>([size])</td>
 <td>Aggregates records of a distributed array.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">chunk</span></code>(key_axes,&nbsp;value_axes,&nbsp;size)</td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.swap" title="bolt.spark.array.BoltArraySpark.swap"><code class="xref py py-obj docutils literal"><span class="pre">swap</span></code></a>(key_axes,&nbsp;value_axes[,&nbsp;size])</td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.swap" title="bolt.spark.array.BoltArraySpark.swap"><code class="xref py py-obj docutils literal"><span class="pre">swap</span></code></a>(key_axes,&nbsp;value_axes[,&nbsp;size])</td>
 <td>Swap axes from keys to values.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">cache</span></code>()</td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.cache" title="bolt.spark.array.BoltArraySpark.cache"><code class="xref py py-obj docutils literal"><span class="pre">cache</span></code></a>()</td>
+<td>Cache the underlying RDD in memory.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">unpersist</span></code>()</td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.unpersist" title="bolt.spark.array.BoltArraySpark.unpersist"><code class="xref py py-obj docutils literal"><span class="pre">unpersist</span></code></a>()</td>
+<td>Remove the underlying RDD from memory.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">toarray</span></code>()</td>
-<td></td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.toarray" title="bolt.spark.array.BoltArraySpark.toarray"><code class="xref py py-obj docutils literal"><span class="pre">toarray</span></code></a>()</td>
+<td>Returns the contents as a local array.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">tordd</span></code>()</td>
-<td></td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.tordd" title="bolt.spark.array.BoltArraySpark.tordd"><code class="xref py py-obj docutils literal"><span class="pre">tordd</span></code></a>()</td>
+<td>Return the underlying RDD of the bolt array.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.array.BoltArraySpark.split" title="bolt.spark.array.BoltArraySpark.split"><code class="xref py py-obj docutils literal"><span class="pre">split</span></code></a></td>
+<td>Axis at which the array is split into keys/values.</td>
 </tr>
 </tbody>
 </table>
@@ -185,7 +185,37 @@
 <dl class="class">
 <dt id="bolt.spark.array.BoltArraySpark">
 <em class="property">class </em><code class="descclassname">bolt.spark.array.</code><code class="descname">BoltArraySpark</code><span class="sig-paren">(</span><em>rdd</em>, <em>shape=None</em>, <em>split=None</em>, <em>dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><dl class="attribute">
+<dt id="bolt.spark.array.BoltArraySpark.T">
+<code class="descname">T</code><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transpose by reversing the order of the axes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.astype">
+<code class="descname">astype</code><span class="sig-paren">(</span><em>dtype</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.astype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.astype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cast the array to a specified type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dtype</strong> : str or dtype</p>
+<blockquote class="last">
+<div><p>Typecode or data-type to cast the array to (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.cache">
+<code class="descname">cache</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.cache"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.cache" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cache the underlying RDD in memory.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="bolt.spark.array.BoltArraySpark.concatenate">
 <code class="descname">concatenate</code><span class="sig-paren">(</span><em>arry</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.concatenate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Join this array with another array.</p>
@@ -197,6 +227,18 @@
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.display">
+<code class="descname">display</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.display"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show a pretty-printed representation of this BoltArrayLocal.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bolt.spark.array.BoltArraySpark.dtype">
+<code class="descname">dtype</code><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data-type of array.</p>
 </dd></dl>
 
 <dl class="method">
@@ -226,6 +268,12 @@ which may incur a swap.</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bolt.spark.array.BoltArraySpark.keys">
+<code class="descname">keys</code><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a restricted keys.</p>
 </dd></dl>
 
 <dl class="method">
@@ -312,6 +360,12 @@ will compute over all axes</p>
 </table>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="bolt.spark.array.BoltArraySpark.ndim">
+<code class="descname">ndim</code><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.ndim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of dimensions.</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="bolt.spark.array.BoltArraySpark.reduce">
 <code class="descname">reduce</code><span class="sig-paren">(</span><em>func</em>, <em>axis=(0</em>, <em>)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.reduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.reduce" title="Permalink to this definition">¶</a></dt>
@@ -342,25 +396,81 @@ are in the keys, which may incur a swap.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.reshape">
+<code class="descname">reshape</code><span class="sig-paren">(</span><em>*shape</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an array with the same data but a new shape.</p>
+<p>Currently only supports reshaping that independently
+reshapes the keys, or the values, or both.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> :  tuple of ints, or n ints</p>
+<blockquote class="last">
+<div><p>New shape</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bolt.spark.array.BoltArraySpark.shape">
+<code class="descname">shape</code><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size of each dimension.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bolt.spark.array.BoltArraySpark.size">
+<code class="descname">size</code><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total number of elements.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bolt.spark.array.BoltArraySpark.split">
+<code class="descname">split</code><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axis at which the array is split into keys/values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.squeeze">
+<code class="descname">squeeze</code><span class="sig-paren">(</span><em>axis=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.squeeze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.squeeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove one or more single-dimensional axes from the array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>axis</strong> : tuple or int</p>
+<blockquote class="last">
+<div><p>One or more singleton axes to remove.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="bolt.spark.array.BoltArraySpark.stack">
-<code class="descname">stack</code><span class="sig-paren">(</span><em>stack_size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.stack" title="Permalink to this definition">¶</a></dt>
+<code class="descname">stack</code><span class="sig-paren">(</span><em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.stack" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aggregates records of a distributed array.</p>
 <p>Stacking should improve the performance of vectorized operations,
-but the resulting Stacked object only exposes a restricted set
+but the resulting StackedArray object only exposes a restricted set
 of operations (e.g. map, reduce). The unstack method can be used
 to restore the full bolt array.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>stack_size: int, optional, default=None</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>size</strong> : int, optional, default=None</p>
 <blockquote>
 <div><p>The maximum size for each stack (number of original records),
 will aggregate groups of records per partition up to this size.</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Stacked</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">StackedArray</p>
 </td>
 </tr>
 </tbody>
@@ -461,6 +571,25 @@ move axes in one direction (from keys to values, or values to keys).</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.toarray">
+<code class="descname">toarray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.toarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.toarray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the contents as a local array.</p>
+<p>Will likely cause memory problems for large objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.tolocal">
+<code class="descname">tolocal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.tolocal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.tolocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a local bolt array by first collecting as an array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.tordd">
+<code class="descname">tordd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.tordd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.tordd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the underlying RDD of the bolt array.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="bolt.spark.array.BoltArraySpark.transpose">
 <code class="descname">transpose</code><span class="sig-paren">(</span><em>*axes</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.transpose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an array with the axes transposed.</p>
@@ -471,7 +600,7 @@ only by transpoing the keys or the values.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>axes</strong> : None, tuple of ints, or <cite>n</cite> ints</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>axes</strong> : None, tuple of ints, or n ints</p>
 <blockquote class="last">
 <div><p>If None, will reverse axis order.</p>
 </div></blockquote>
@@ -479,6 +608,12 @@ only by transpoing the keys or the values.</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.spark.array.BoltArraySpark.unpersist">
+<code class="descname">unpersist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/array.html#BoltArraySpark.unpersist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.array.BoltArraySpark.unpersist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the underlying RDD from memory.</p>
 </dd></dl>
 
 <dl class="method">
