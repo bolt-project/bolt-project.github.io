@@ -150,7 +150,11 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>Overview of local</p>
+<p>Overview of local...</p>
+<p>Goal is to basically just wrap numpy whereever possible. Most of the core API is based on numpy.</p>
+<p>But add functional operators. We chose <cite>map</cite>, <cite>filter</cite>, <cite>reduce</cite>.</p>
+<p>Like using Python&#8217;s built-ins on ndarrays, but can apply them along one or more axes. May cause a reshape.</p>
+<p>Also added conversion methods (e.g. to Spark, which just requires a SparkContext)</p>
 </div>
 
 
