@@ -151,10 +151,7 @@
   <div class="section" id="design">
 <h1>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
 <p>The base object in <code class="docutils literal"><span class="pre">bolt</span></code> defines a core set of ndarray functionality, as well as a subset functional operators. Different implementations are provided for different settings. The current ones are:</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">bolt.local</span></code> for local computation with NumPy</li>
-<li><code class="docutils literal"><span class="pre">bolt.spark</span></code> for distributed computation with Spark</li>
-</ul>
+<p><code class="docutils literal"><span class="pre">bolt.local</span></code> for local computation with NumPy <br /> <code class="docutils literal"><span class="pre">bolt.spark</span></code> for distributed computation with Spark</p>
 <p>The core methods currently avaialble on all <code class="docutils literal"><span class="pre">bolt</span></code> arrays are as follows.</p>
 <p>Reductions along axes:</p>
 <table border="1" class="longtable docutils">
@@ -236,7 +233,7 @@
 </table>
 <p>And also slicing (e.g. <code class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">0:100]</span></code>, <code class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">:]</span></code>) and indexing (e.g. <code class="docutils literal"><span class="pre">x[[0,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">3]]</span></code>)</p>
 <p>We aim to replicate a large fraction of the NumPy API, so if there is something that we are missing that you would be interested in having, or something that you would like to contribute, create an issue.</p>
-<p>For further details on the implementations, as well as functionality specific to the different modes, see the documentation for <code class="docutils literal"><span class="pre">bolt.spark</span></code> and <code class="docutils literal"><span class="pre">bolt.local</span></code>.</p>
+<p>For further details on the implementations, as well as functionality specific to the different modes, see the documentation for <a class="reference external" href="spark.html">bolt.spark</a> and <a class="reference external" href="local.html">bolt.local</a>.</p>
 </div>
 
 

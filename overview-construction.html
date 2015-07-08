@@ -232,149 +232,7 @@
 </div>
 <div class="section" id="detailed-api">
 <h2>Detailed API<a class="headerlink" href="#detailed-api" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="bolt.spark.construct.ConstructSpark">
-<em class="property">class </em><code class="descclassname">bolt.spark.construct.</code><code class="descname">ConstructSpark</code><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="staticmethod">
-<dt id="bolt.spark.construct.ConstructSpark.array">
-<em class="property">static </em><code class="descname">array</code><span class="sig-paren">(</span><em>a</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.array" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a spark bolt array from a local array.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : array-like</p>
-<blockquote>
-<div><p>An array, any object exposing the array interface, an
-object whose __array__ method returns an array, or any
-(nested) sequence.</p>
-</div></blockquote>
-<p><strong>context</strong> : SparkContext</p>
-<blockquote>
-<div><p>A context running Spark. (see pyspark)</p>
-</div></blockquote>
-<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
-<blockquote>
-<div><p>Which axes to distribute the array along. The resulting
-distributed object will use keys to represent these axes,
-with the remaining axes represented by values.</p>
-</div></blockquote>
-<p><strong>dtype</strong> : data-type, optional, default=None</p>
-<blockquote>
-<div><p>The desired data-type for the array. If None, will
-be determined from the data. (see numpy)</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="bolt.spark.construct.ConstructSpark.concatenate">
-<em class="property">static </em><code class="descname">concatenate</code><span class="sig-paren">(</span><em>arrays</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.concatenate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Join two bolt arrays together, at least one of which is in spark.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arrays</strong> : tuple</p>
-<blockquote>
-<div><p>A pair of arrays. At least one must be a spark array,
-the other can be a local bolt array, a local numpy array,
-or an array-like.</p>
-</div></blockquote>
-<p><strong>axis</strong> : int, optional, default=0</p>
-<blockquote>
-<div><p>The axis along which the arrays will be joined.</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="bolt.spark.construct.ConstructSpark.ones">
-<em class="property">static </em><code class="descname">ones</code><span class="sig-paren">(</span><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.ones" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a spark bolt array of ones.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
-<blockquote>
-<div><p>The desired shape of the array.</p>
-</div></blockquote>
-<p><strong>context</strong> : SparkContext</p>
-<blockquote>
-<div><p>A context running Spark. (see pyspark)</p>
-</div></blockquote>
-<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
-<blockquote>
-<div><p>Which axes to distribute the array along. The resulting
-distributed object will use keys to represent these axes,
-with the remaining axes represented by values.</p>
-</div></blockquote>
-<p><strong>dtype</strong> : data-type, optional, default=float64</p>
-<blockquote>
-<div><p>The desired data-type for the array. If None, will
-be determined from the data. (see numpy)</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="bolt.spark.construct.ConstructSpark.zeros">
-<em class="property">static </em><code class="descname">zeros</code><span class="sig-paren">(</span><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.zeros" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a spark bolt array of zeros.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
-<blockquote>
-<div><p>The desired shape of the array.</p>
-</div></blockquote>
-<p><strong>context</strong> : SparkContext</p>
-<blockquote>
-<div><p>A context running Spark. (see pyspark)</p>
-</div></blockquote>
-<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
-<blockquote>
-<div><p>Which axes to distribute the array along. The resulting
-distributed object will use keys to represent these axes,
-with the remaining axes represented by values.</p>
-</div></blockquote>
-<p><strong>dtype</strong> : data-type, optional, default=float64</p>
-<blockquote>
-<div><p>The desired data-type for the array. If None, will
-be determined from the data. (see numpy)</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
+<h3>Local</h3><dl class="class">
 <dt id="bolt.local.construct.ConstructLocal">
 <em class="property">class </em><code class="descclassname">bolt.local.construct.</code><code class="descname">ConstructLocal</code><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="staticmethod">
@@ -486,6 +344,148 @@ be determined from the data. (see numpy)</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<h3>Spark</h3><dl class="class">
+<dt id="bolt.spark.construct.ConstructSpark">
+<em class="property">class </em><code class="descclassname">bolt.spark.construct.</code><code class="descname">ConstructSpark</code><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="staticmethod">
+<dt id="bolt.spark.construct.ConstructSpark.array">
+<em class="property">static </em><code class="descname">array</code><span class="sig-paren">(</span><em>a</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a spark bolt array from a local array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : array-like</p>
+<blockquote>
+<div><p>An array, any object exposing the array interface, an
+object whose __array__ method returns an array, or any
+(nested) sequence.</p>
+</div></blockquote>
+<p><strong>context</strong> : SparkContext</p>
+<blockquote>
+<div><p>A context running Spark. (see pyspark)</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
+<blockquote>
+<div><p>Which axes to distribute the array along. The resulting
+distributed object will use keys to represent these axes,
+with the remaining axes represented by values.</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=None</p>
+<blockquote>
+<div><p>The desired data-type for the array. If None, will
+be determined from the data. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.spark.construct.ConstructSpark.concatenate">
+<em class="property">static </em><code class="descname">concatenate</code><span class="sig-paren">(</span><em>arrays</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.concatenate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join two bolt arrays together, at least one of which is in spark.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arrays</strong> : tuple</p>
+<blockquote>
+<div><p>A pair of arrays. At least one must be a spark array,
+the other can be a local bolt array, a local numpy array,
+or an array-like.</p>
+</div></blockquote>
+<p><strong>axis</strong> : int, optional, default=0</p>
+<blockquote>
+<div><p>The axis along which the arrays will be joined.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.spark.construct.ConstructSpark.ones">
+<em class="property">static </em><code class="descname">ones</code><span class="sig-paren">(</span><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.ones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a spark bolt array of ones.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
+<blockquote>
+<div><p>The desired shape of the array.</p>
+</div></blockquote>
+<p><strong>context</strong> : SparkContext</p>
+<blockquote>
+<div><p>A context running Spark. (see pyspark)</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
+<blockquote>
+<div><p>Which axes to distribute the array along. The resulting
+distributed object will use keys to represent these axes,
+with the remaining axes represented by values.</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=float64</p>
+<blockquote>
+<div><p>The desired data-type for the array. If None, will
+be determined from the data. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.spark.construct.ConstructSpark.zeros">
+<em class="property">static </em><code class="descname">zeros</code><span class="sig-paren">(</span><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.zeros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a spark bolt array of zeros.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
+<blockquote>
+<div><p>The desired shape of the array.</p>
+</div></blockquote>
+<p><strong>context</strong> : SparkContext</p>
+<blockquote>
+<div><p>A context running Spark. (see pyspark)</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
+<blockquote>
+<div><p>Which axes to distribute the array along. The resulting
+distributed object will use keys to represent these axes,
+with the remaining axes represented by values.</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=float64</p>
+<blockquote>
+<div><p>The desired data-type for the array. If None, will
+be determined from the data. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
 </td>
 </tr>
 </tbody>
