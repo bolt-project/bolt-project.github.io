@@ -94,7 +94,12 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="spark.html">Spark</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#swapping">Swapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#transposing-reshaping">Transposing / reshaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#stacking">Stacking</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="spark-api.html">Methods</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="spark-api.html#detailed-api">Detailed API</a></li>
 </ul>
@@ -189,7 +194,7 @@
 <span class="go">(3, 4)</span>
 </pre></div>
 </div>
-<p>and change the form of paralleization during construction</p>
+<p>and change the form of parallelization during construction</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">split</span>
 <span class="go">2</span>
@@ -199,21 +204,6 @@
 <span class="go">(4,)</span>
 </pre></div>
 </div>
-<p>The generic <code class="docutils literal"><span class="pre">swap</span></code> operation moves axes between the keys and the values</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">swap</span><span class="p">((),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(2,)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(2,3)</span>
-</pre></div>
-</div>
-<p>in this case the array itself didn&#8217;t change dimension, we only changed the parallelization</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(2, 3, 4)</span>
-</pre></div>
-</div>
-<p>The user-facing <code class="docutils literal"><span class="pre">transpose</span></code> and <code class="docutils literal"><span class="pre">reshape</span></code> rely on <code class="docutils literal"><span class="pre">swap</span></code> to do their reorganization.</p>
 <p>Ordering does not matter, but the RDD will be sorted before converting into a local array to ensure correct structure</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 <span class="go">array([ 6.,  6.,  6.,  6.])</span>

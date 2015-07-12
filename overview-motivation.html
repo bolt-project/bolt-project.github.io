@@ -94,7 +94,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="spark.html">Spark</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="spark-overview.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#swapping">Swapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#transposing-reshaping">Transposing / reshaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#stacking">Stacking</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="spark-api.html">Methods</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="spark-api.html#detailed-api">Detailed API</a></li>
 </ul>
@@ -151,10 +156,15 @@
   <div class="section" id="motivation">
 <h1>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
 <p>We and others have worked with multidimensional arrays in both local and distributed environments across multiple languages. New distributed computing platforms, especially Spark, have made it easy to flexibly implement distributed workflows that scale well to potentially massive data sets. But these technologies do not provide much benefit, and may even slow down, workflows on smaller or medium sized data sets.</p>
-<p>We want to be able to build projects on an ndarray-like interface and know that we can leverage either local or distributed operations under the hood. And we want to target Python because of its rich libaries for scientific computing and machine learning.</p>
-<p>For local computation, Python already offers a powerful multidimensional array abstraction, NumPy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code>.</p>
-<p>For distributed computation, Spark&#8217;s <code class="docutils literal"><span class="pre">RDD</span></code> (resiliant distributed dataset) provides an elegant API for functional operations (<code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">reduce</span></code>, <code class="docutils literal"><span class="pre">join</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, etc.), but is not straightforward to work with as an multidimensional array, leaving many other projects to invent the neccessary abstractions. For example, in working on <a class="reference external" href="https://github.com/thunder-project/thunder">Thunder</a>, we implemented ndarray-like manipulations on distributed collections of key-value pairs, for the purpose of image and time series processing. Variants on this idea were also developed as part of <a class="reference external" href="https://github.com/ogrisel/spylearn">spylearn</a>, and now <a class="reference external" href="https://github.com/lensacom/sparkit-learn">sparkit-learn</a>.</p>
-<p>One of the goals of Bolt is to solve this problem once well, so that others can build on top of it. If you have a project that could leverage this functionality, come <a class="reference external" href="https://gitter.im/bolt-project/bolt">chat</a> with us!</p>
+<p>We want to be able to build projects on an interface like NumPy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code> and know that we can leverage either local or distributed operations. And we want to target Python because of its rich libaries for scientific computing and machine learning. Specifically, we want an object that:</p>
+<ul class="simple">
+<li>implements most of the <code class="docutils literal"><span class="pre">ndarray</span></code> interface</li>
+<li>implements a subset of functional operators (e.g. <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, <code class="docutils literal"><span class="pre">reduce</span></code>)</li>
+<li>supports a variety of backends (e.g. local, multi-core, distributed)</li>
+</ul>
+<p>For distributed computation, we currently target Spark&#8217;s <code class="docutils literal"><span class="pre">RDD</span></code> (resiliant distributed dataset), which provides an elegant API for functional operations (<code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">reduce</span></code>, <code class="docutils literal"><span class="pre">join</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, etc.) but is not easy to work with as an multidimensional array. Many other projects have invented the neccessary  abstractions (e.g. <a class="reference external" href="https://github.com/thunder-project/thunder">Thunder</a>, <a class="reference external" href="https://github.com/ogrisel/spylearn">spylearn</a>, <a class="reference external" href="https://github.com/lensacom/sparkit-learn">sparkit-learn</a>). One of the goals of Bolt is to solve this problem once well, so that others can build on top of it.</p>
+<p>Bolt aims to implement an object with the properties list above. It currently supports both NumPy (for local computation), and Spark (for distributed computation), but we envision adding other backends in the future.</p>
+<p>The project is in its early stages, so we welcome feedback, ideas, and use cases, just join us in the <a class="reference external" href="https://gitter.im/bolt-project/bolt">chatroom</a>.</p>
 </div>
 
 

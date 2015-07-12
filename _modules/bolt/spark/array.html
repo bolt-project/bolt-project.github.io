@@ -92,7 +92,12 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../spark.html">Spark</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../spark-overview.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../spark-design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../spark-design.html">Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../spark-design.html#swapping">Swapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../spark-design.html#transposing-reshaping">Transposing / reshaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../spark-design.html#stacking">Stacking</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../../spark-api.html">Methods</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../spark-api.html#detailed-api">Detailed API</a></li>
 </ul>
@@ -200,7 +205,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        size : int, optional, default=None</span>
 <span class="sd">            The maximum size for each stack (number of original records),</span>
-<span class="sd">            will aggregate groups of records per partition up to this size.</span>
+<span class="sd">            will aggregate groups of records per partition up to this size,</span>
+<span class="sd">            if None will aggregate all records on each partition.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -322,7 +328,8 @@
             <span class="n">count</span> <span class="o">=</span> <span class="n">zipped</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
         <span class="n">reindexed</span> <span class="o">=</span> <span class="n">zipped</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="p">(</span><span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kv</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
-        <span class="n">remaining</span> <span class="o">=</span> <span class="p">[</span><span class="n">swapped</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">swapped</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span> <span class="k">if</span> <span class="n">dim</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">axis</span><span class="p">]</span>
+        <span class="c"># since we can only filter over one axis, the remaining shape is always the following</span>
+        <span class="n">remaining</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">swapped</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
         <span class="k">if</span> <span class="n">count</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">count</span><span class="p">]</span> <span class="o">+</span> <span class="n">remaining</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
