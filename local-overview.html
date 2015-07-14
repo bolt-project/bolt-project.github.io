@@ -59,6 +59,9 @@
         
 
         
+          
+          <img src="_static/header-logo-small.svg" class="logo" />
+        
         </a>
 
         
@@ -155,11 +158,7 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>Overview of local...</p>
-<p>Goal is to basically just wrap numpy whereever possible. Most of the core API is based on numpy.</p>
-<p>But add functional operators. We chose <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, <code class="docutils literal"><span class="pre">reduce</span></code>.</p>
-<p>Like using Python&#8217;s built-ins on ndarrays, but can apply them along one or more axes. May cause a reshape.</p>
-<p>Also added conversion methods (e.g. to Spark, which just requires a SparkContext)</p>
+<p>The local implementation of the Bolt array directly extends NumPy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code>. As such, it as all the functionality of an <code class="docutils literal"><span class="pre">ndarray</span></code>, but adds functionality to complete the <a class="reference external" href="overview-methods.html">core API</a>. Those additions are the functional operators <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, and <code class="docutils literal"><span class="pre">reduce</span></code>. These behave like calling Python&#8217;s built-in functional operators on an <code class="docutils literal"><span class="pre">ndarray</span></code> but allow functions to be applied along one or more axes, whereas ordinarily they are only applied along the first axis.</p>
 </div>
 
 

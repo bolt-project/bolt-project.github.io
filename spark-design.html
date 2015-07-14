@@ -59,6 +59,9 @@
         
 
         
+          
+          <img src="_static/header-logo-small.svg" class="logo" />
+        
         </a>
 
         
@@ -257,7 +260,7 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
 <span class="go">(5,)</span>
 </pre></div>
 </div>
-<p>For some operations, it can be more efficient to apply functions to groups of records at once. For example, when calling one of the <code class="docutils literal"><span class="pre">partial_fit</span></code> methods from <code class="docutils literal"><span class="pre">scikit-learn</span></code>, which take an arbitrary number of data points and estimate model parameters. We provide a method <code class="docutils literal"><span class="pre">stack</span></code> to aggregate records within partitions. The resulting <code class="docutils literal"><span class="pre">StackedArray</span></code> has the same intrinstic shape, but records have been aggregated to leverage faster performance by operating on larger arrays. The only parameter is the <code class="docutils literal"><span class="pre">size</span></code>, the number of records aggregated per partition</p>
+<p>For some operations, it can be more efficient to apply functions to groups of records at once. For example, when calling one of the <code class="docutils literal"><span class="pre">partial_fit</span></code> methods from <code class="docutils literal"><span class="pre">scikit-learn</span></code>, which take an arbitrary number of data points and estimate model parameters. We provide a method <code class="docutils literal"><span class="pre">stack</span></code> to aggregate records within partitions. The resulting <code class="docutils literal"><span class="pre">StackedArray</span></code> has the same intrinstic shape, but records have been aggregated to leverage faster performance by operating on larger arrays. The only parameter is the <code class="docutils literal"><span class="pre">size</span></code>, the number of records aggregated per partition.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(100, 5)</span>

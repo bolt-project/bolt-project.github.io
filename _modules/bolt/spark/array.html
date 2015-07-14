@@ -57,6 +57,9 @@
         
 
         
+          
+          <img src="../../../_static/header-logo-small.svg" class="logo" />
+        
         </a>
 
         
@@ -212,8 +215,8 @@
 <span class="sd">        -------</span>
 <span class="sd">        StackedArray</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">stk</span> <span class="o">=</span> <span class="n">StackedArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">split</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">stk</span><span class="o">.</span><span class="n">_stack</span><span class="p">()</span>
+        <span class="n">stk</span> <span class="o">=</span> <span class="n">StackedArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rdd</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">split</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stk</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
 </div>
     <span class="k">def</span> <span class="nf">_align</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -379,7 +382,7 @@
 <span class="sd">        Compute a statistic over an axis.</span>
 
 <span class="sd">        Can provide either a function (for use in a reduce)</span>
-<span class="sd">        or a name (for use by a stat counter)</span>
+<span class="sd">        or a name (for use by a stat counter).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -808,16 +811,17 @@
 
         <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reshapebasic</span><span class="p">(</span><span class="n">new</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Currently no support for reshaping between keys and values for BoltArraySpark&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Currently no support for reshaping between &quot;</span>
+                                      <span class="s">&quot;keys and values for BoltArraySpark&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">new_key_shape</span><span class="p">,</span> <span class="n">new_value_shape</span> <span class="o">=</span> <span class="n">new</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span> <span class="n">new</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">new_key_shape</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">new_value_shape</span><span class="p">)</span>
 </div>
     <span class="k">def</span> <span class="nf">_reshapebasic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Check if the requested reshape can be broken into independant reshapes on the keys and values.</span>
-<span class="sd">        If it can, returns the index in the new shape separating keys from values.</span>
-<span class="sd">        If it cannot, returns -1</span>
+<span class="sd">        Check if the requested reshape can be broken into independant reshapes</span>
+<span class="sd">        on the keys and values. If it can, returns the index in the new shape</span>
+<span class="sd">        separating keys from values, otherwise returns -1</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">new</span> <span class="o">=</span> <span class="n">tupleize</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
         <span class="n">old_key_size</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -828,7 +832,6 @@
             <span class="n">new_value_size</span> <span class="o">=</span> <span class="n">prod</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="n">i</span><span class="p">:])</span>
             <span class="k">if</span> <span class="n">new_key_size</span> <span class="o">==</span> <span class="n">old_key_size</span> <span class="ow">and</span> <span class="n">new_value_size</span> <span class="o">==</span> <span class="n">old_value_size</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">i</span>
-                <span class="k">break</span>
 
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
