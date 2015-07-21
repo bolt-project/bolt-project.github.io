@@ -1,0 +1,583 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Construction</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="None" href="index.html"/>
+        <link rel="next" title="Spark" href="spark.html"/>
+        <link rel="prev" title="Installation" href="installation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> bolt
+        
+
+        
+          
+          <img src="_static/header-logo-small.svg" class="logo" />
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-methods.html">Core API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#backends">Backends</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#local">Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#spark">Spark</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#docker-image">Docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#local">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spark">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">Spark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spark-overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#swapping">Swapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#transposing-reshaping">Transposing / reshaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#stacking-chunking">Stacking / chunking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spark-stacking.html">Stacking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-chunking.html">Chunking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-api.html">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="local.html">Local</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="local-overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local-api.html">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="local-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">bolt</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Construction</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/construction.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="construction">
+<h1>Construction<a class="headerlink" href="#construction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="local">
+<h2>Local<a class="headerlink" href="#local" title="Permalink to this headline">¶</a></h2>
+<p>Constructing local bolt arrays is nearly identical to using NumPy&#8217;s constructors.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.array" title="bolt.local.construct.ConstructLocal.array"><code class="xref py py-obj docutils literal"><span class="pre">array</span></code></a>(a[,&nbsp;dtype,&nbsp;order])</td>
+<td>Create a local bolt array.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.ones" title="bolt.local.construct.ConstructLocal.ones"><code class="xref py py-obj docutils literal"><span class="pre">ones</span></code></a>(shape[,&nbsp;dtype,&nbsp;order])</td>
+<td>Create a local bolt array of ones.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.zeros" title="bolt.local.construct.ConstructLocal.zeros"><code class="xref py py-obj docutils literal"><span class="pre">zeros</span></code></a>(shape[,&nbsp;dtype,&nbsp;order])</td>
+<td>Create a local bolt array of zeros.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.concatenate" title="bolt.local.construct.ConstructLocal.concatenate"><code class="xref py py-obj docutils literal"><span class="pre">concatenate</span></code></a>(arrays[,&nbsp;axis])</td>
+<td>Join a sequence of arrays together.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="spark">
+<h2>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">¶</a></h2>
+<p>Constructing bolt arrays in Spark is similar, except the constructors must be provided with a <code class="docutils literal"><span class="pre">SparkContext</span></code>. This is normally provided when running Spark interactively, or created at the beginning of a Spark job. In addition, you can specify which axes will be distributed. Briefly, arrays are represented using a subset of axes as the keys. So a five dimensional array specified with <code class="docutils literal"><span class="pre">axis=(0,</span> <span class="pre">1)</span></code> would be represented as <code class="docutils literal"><span class="pre">key,value</span></code> pairs where the keys are two-tuples and the values are three-dimensional arrays. Bolt is designed so that its methods are invariant to the choice of distributed axes, but the choice will affect performance of many operations.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.array" title="bolt.spark.construct.ConstructSpark.array"><code class="xref py py-obj docutils literal"><span class="pre">array</span></code></a>(a[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
+<td>Create a spark bolt array from a local array.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.ones" title="bolt.spark.construct.ConstructSpark.ones"><code class="xref py py-obj docutils literal"><span class="pre">ones</span></code></a>(shape[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
+<td>Create a spark bolt array of ones.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.zeros" title="bolt.spark.construct.ConstructSpark.zeros"><code class="xref py py-obj docutils literal"><span class="pre">zeros</span></code></a>(shape[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
+<td>Create a spark bolt array of zeros.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.concatenate" title="bolt.spark.construct.ConstructSpark.concatenate"><code class="xref py py-obj docutils literal"><span class="pre">concatenate</span></code></a>(arrays[,&nbsp;axis])</td>
+<td>Join two bolt arrays together, at least one of which is in spark.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Comparing local and distributed constructors</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">blt</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">mode</span>
+<span class="go">local</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">blt</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">mode</span>
+<span class="go">spark</span>
+</pre></div>
+</div>
+<p>Comparing different axis choices</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blt</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blt</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">blt</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blt</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 3, 4)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="detailed-api">
+<h2>Detailed API<a class="headerlink" href="#detailed-api" title="Permalink to this headline">¶</a></h2>
+<h3>Local</h3><dl class="class">
+<dt id="bolt.local.construct.ConstructLocal">
+<em class="property">class </em><code class="descclassname">bolt.local.construct.</code><code class="descname">ConstructLocal</code><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="staticmethod">
+<dt id="bolt.local.construct.ConstructLocal.array">
+<em class="property">static </em><code class="descname">array</code><span class="sig-paren">(</span><em>a</em>, <em>dtype=None</em>, <em>order='C'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a local bolt array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : array-like</p>
+<blockquote>
+<div><p>An array, any object exposing the array interface, an
+object whose __array__ method returns an array, or any
+(nested) sequence.</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=None</p>
+<blockquote>
+<div><p>The desired data-type for the array. If None, will
+be determined from the data. (see numpy)</p>
+</div></blockquote>
+<p><strong>order</strong> : {&#8216;C&#8217;, &#8216;F&#8217;, &#8216;A&#8217;}, optional, default=&#8217;C&#8217;</p>
+<blockquote>
+<div><p>The order of the array. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.local.construct.ConstructLocal.concatenate">
+<em class="property">static </em><code class="descname">concatenate</code><span class="sig-paren">(</span><em>arrays</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.concatenate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join a sequence of arrays together.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arrays</strong> : tuple</p>
+<blockquote>
+<div><p>A sequence of array-like e.g. (a1, a2, ...)</p>
+</div></blockquote>
+<p><strong>axis</strong> : int, optional, default=0</p>
+<blockquote>
+<div><p>The axis along which the arrays will be joined.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.local.construct.ConstructLocal.ones">
+<em class="property">static </em><code class="descname">ones</code><span class="sig-paren">(</span><em>shape</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em>, <em>order='C'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.ones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a local bolt array of ones.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
+<blockquote>
+<div><p>Dimensions of the desired array</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=float64</p>
+<blockquote>
+<div><p>The desired data-type for the array. (see numpy)</p>
+</div></blockquote>
+<p><strong>order</strong> : {&#8216;C&#8217;, &#8216;F&#8217;, &#8216;A&#8217;}, optional, default=&#8217;C&#8217;</p>
+<blockquote>
+<div><p>The order of the array. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.local.construct.ConstructLocal.zeros">
+<em class="property">static </em><code class="descname">zeros</code><span class="sig-paren">(</span><em>shape</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em>, <em>order='C'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.zeros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a local bolt array of zeros.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
+<blockquote>
+<div><p>Dimensions of the desired array.</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=float64</p>
+<blockquote>
+<div><p>The desired data-type for the array. (see numpy)</p>
+</div></blockquote>
+<p><strong>order</strong> : {&#8216;C&#8217;, &#8216;F&#8217;, &#8216;A&#8217;}, optional, default=&#8217;C&#8217;</p>
+<blockquote>
+<div><p>The order of the array. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<h3>Spark</h3><dl class="class">
+<dt id="bolt.spark.construct.ConstructSpark">
+<em class="property">class </em><code class="descclassname">bolt.spark.construct.</code><code class="descname">ConstructSpark</code><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="staticmethod">
+<dt id="bolt.spark.construct.ConstructSpark.array">
+<em class="property">static </em><code class="descname">array</code><span class="sig-paren">(</span><em>a</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a spark bolt array from a local array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : array-like</p>
+<blockquote>
+<div><p>An array, any object exposing the array interface, an
+object whose __array__ method returns an array, or any
+(nested) sequence.</p>
+</div></blockquote>
+<p><strong>context</strong> : SparkContext</p>
+<blockquote>
+<div><p>A context running Spark. (see pyspark)</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
+<blockquote>
+<div><p>Which axes to distribute the array along. The resulting
+distributed object will use keys to represent these axes,
+with the remaining axes represented by values.</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=None</p>
+<blockquote>
+<div><p>The desired data-type for the array. If None, will
+be determined from the data. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.spark.construct.ConstructSpark.concatenate">
+<em class="property">static </em><code class="descname">concatenate</code><span class="sig-paren">(</span><em>arrays</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.concatenate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join two bolt arrays together, at least one of which is in spark.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arrays</strong> : tuple</p>
+<blockquote>
+<div><p>A pair of arrays. At least one must be a spark array,
+the other can be a local bolt array, a local numpy array,
+or an array-like.</p>
+</div></blockquote>
+<p><strong>axis</strong> : int, optional, default=0</p>
+<blockquote>
+<div><p>The axis along which the arrays will be joined.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.spark.construct.ConstructSpark.ones">
+<em class="property">static </em><code class="descname">ones</code><span class="sig-paren">(</span><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.ones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a spark bolt array of ones.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
+<blockquote>
+<div><p>The desired shape of the array.</p>
+</div></blockquote>
+<p><strong>context</strong> : SparkContext</p>
+<blockquote>
+<div><p>A context running Spark. (see pyspark)</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
+<blockquote>
+<div><p>Which axes to distribute the array along. The resulting
+distributed object will use keys to represent these axes,
+with the remaining axes represented by values.</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=float64</p>
+<blockquote>
+<div><p>The desired data-type for the array. If None, will
+be determined from the data. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="bolt.spark.construct.ConstructSpark.zeros">
+<em class="property">static </em><code class="descname">zeros</code><span class="sig-paren">(</span><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.zeros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a spark bolt array of zeros.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>shape</strong> : tuple</p>
+<blockquote>
+<div><p>The desired shape of the array.</p>
+</div></blockquote>
+<p><strong>context</strong> : SparkContext</p>
+<blockquote>
+<div><p>A context running Spark. (see pyspark)</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple, optional, default=(0,)</p>
+<blockquote>
+<div><p>Which axes to distribute the array along. The resulting
+distributed object will use keys to represent these axes,
+with the remaining axes represented by values.</p>
+</div></blockquote>
+<p><strong>dtype</strong> : data-type, optional, default=float64</p>
+<blockquote>
+<div><p>The desired data-type for the array. If None, will
+be determined from the data. (see numpy)</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="spark.html" class="btn btn-neutral float-right" title="Spark" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0.dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+@font-face {
+  font-family: "CooperHewitt-Light";
+  src: url("../fonts/CooperHewitt-Light.woff");
+}
+
+.logo {
+	width: 500px;
+}
+
+.bars {
+	width: 200px;
+}
+
+.content {
+	position: relative;
+ 	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+ 	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    top: 50%;
+    cursor: default;
+}
+
+#main {
+	border-left: 2px dotted rgb(100,100,100);
+	margin-left: -5px;
+	padding-left: 8%;
+}
+
+#side {
+	padding-right: 6%;
+}
+
+h1 {
+	font-family: "CooperHewitt-Light", sans serif;
+	font-weight: normal;
+}
+
+h2 {
+	font-family: "CooperHewitt-Light", sans serif;
+	font-weight: normal;
+}
+
+a {
+	font-family: "CooperHewitt-Light", sans serif;
+	font-size: 22px;
+	-webkit-transition:all 0.25s ease; 
+ 	-moz-transition:all 0.25s ease; 
+ 	-o-transition:all 0.25s ease; 
+ 	transition:all 0.25s ease;
+ 	color: rgb(209, 161, 96);
+ 	cursor: pointer;
+ 	border-bottom: 2px dotted rgb(100, 100, 100);
+ 	padding-bottom: 2px;
+ 	line-height: 1.6em;
+ 	text-decoration: none;
+}
+
+a:visited { 
+	color: rgb(209, 161, 96);
+}
+
+a:hover {
+	color: rgb(160, 121, 45);
+}
+
+@-moz-document url-prefix() {
+    .content {
+        margin-top: 5%;
+        transform: translateY(0%);
+    }
+}
+
+@media (max-width: 968px) {
+
+	.content {
+		position: relative;
+ 		top: 0%;
+ 		transform: none;
+	}
+
+}
+
+@media (min-width: 1200px) {
+
+	.row {
+		max-width: 1100px !important;
+	}
+
+}
+
+
+@media (min-width: 1450px) {
+
+	.row {
+		max-width: 1450px !important;
+	}
+
+}

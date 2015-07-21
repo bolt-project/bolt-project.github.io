@@ -1,0 +1,438 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="None" href="index.html"/>
+        <link rel="up" title="Local" href="local.html"/>
+        <link rel="next" title="Contributing" href="contributing.html"/>
+        <link rel="prev" title="Overview" href="local-overview.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> bolt
+        
+
+        
+          
+          <img src="_static/header-logo-small.svg" class="logo" />
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-methods.html">Core API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#backends">Backends</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#local">Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#spark">Spark</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#docker-image">Docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="construction.html">Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#local">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#spark">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">Spark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spark-overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#swapping">Swapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#transposing-reshaping">Transposing / reshaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#stacking-chunking">Stacking / chunking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spark-stacking.html">Stacking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-chunking.html">Chunking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-api.html">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="local.html">Local</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="local-overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">bolt</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="local.html">Local</a> &raquo;</li>
+      
+    <li>API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/local-api.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<p>The local bolt array implements the <a class="reference external" href="overview-methods.html">core API</a>, as well as the additional methods listed here (for conversions). Full method documentation can be found below (methods directly inherited from numpy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code> not shown).</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.toarray" title="bolt.local.array.BoltArrayLocal.toarray"><code class="xref py py-obj docutils literal"><span class="pre">toarray</span></code></a>()</td>
+<td>Returns the underlying ndarray wrapped by this BoltArrayLocal</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.tordd" title="bolt.local.array.BoltArrayLocal.tordd"><code class="xref py py-obj docutils literal"><span class="pre">tordd</span></code></a>(sc[,&nbsp;axis])</td>
+<td>Converts a BoltArrayLocal into an RDD</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.tospark" title="bolt.local.array.BoltArrayLocal.tospark"><code class="xref py py-obj docutils literal"><span class="pre">tospark</span></code></a>(sc[,&nbsp;axis])</td>
+<td>Converts a BoltArrayLocal into a BoltArraySpark</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.toscalar" title="bolt.local.array.BoltArrayLocal.toscalar"><code class="xref py py-obj docutils literal"><span class="pre">toscalar</span></code></a>()</td>
+<td>Returns the single scalar element contained in an array of shape (), if the array has that shape.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="detailed-api">
+<h2>Detailed API<a class="headerlink" href="#detailed-api" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="bolt.local.array.BoltArrayLocal">
+<em class="property">class </em><code class="descclassname">bolt.local.array.</code><code class="descname">BoltArrayLocal</code><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.concatenate">
+<code class="descname">concatenate</code><span class="sig-paren">(</span><em>arry</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.concatenate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join this array with another array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">BoltArrayLocal</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.display">
+<code class="descname">display</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.display"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show a pretty-printed representation of this BoltArrayLocal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.filter">
+<code class="descname">filter</code><span class="sig-paren">(</span><em>func</em>, <em>axis=(0</em>, <em>)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter array along an axis.</p>
+<p>Applies a function which should evaluate to boolean,
+along a single axis or multiple axes. Array will be
+aligned so that the desired set of axes are in the
+keys, which may require a transpose/reshape.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>func</strong> : function</p>
+<blockquote>
+<div><p>Function to apply, should return boolean</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple or int, optional, default=(0,)</p>
+<blockquote>
+<div><p>Axis or multiple axes to filter along.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.map">
+<code class="descname">map</code><span class="sig-paren">(</span><em>func</em>, <em>axis=(0</em>, <em>)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a function across an axis.</p>
+<p>Array will be aligned so that the desired set of axes
+are in the keys, which may require a transpose/reshape.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>func</strong> : function</p>
+<blockquote>
+<div><p>Function of a single array to apply</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple or int, optional, default=(0,)</p>
+<blockquote>
+<div><p>Axis or multiple axes to apply function along.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.reduce">
+<code class="descname">reduce</code><span class="sig-paren">(</span><em>func</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.reduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.reduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduce an array along an axis.</p>
+<p>Applies an associative/commutative function of two arguments
+cumulatively to all arrays along an axis. Array will be aligned
+so that the desired set of axes are in the keys, which may
+require a transpose/reshape.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>func</strong> : function</p>
+<blockquote>
+<div><p>Function of two arrays that returns a single array</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple or int, optional, default=(0,)</p>
+<blockquote>
+<div><p>Axis or multiple axes to reduce along.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArrayLocal</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.toarray">
+<code class="descname">toarray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.toarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.toarray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the underlying ndarray wrapped by this BoltArrayLocal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.tordd">
+<code class="descname">tordd</code><span class="sig-paren">(</span><em>sc</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.tordd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.tordd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a BoltArrayLocal into an RDD</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sc</strong> : SparkContext</p>
+<blockquote>
+<div><p>The SparkContext which will be used to create the BoltArraySpark</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple or int, optional, default=0</p>
+<blockquote>
+<div><p>The axis (or axes) across which this array will be parallelized</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">RDD[(tuple, ndarray)]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.toscalar">
+<code class="descname">toscalar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.toscalar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.toscalar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the single scalar element contained in an array of shape (), if
+the array has that shape. Returns self otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.tospark">
+<code class="descname">tospark</code><span class="sig-paren">(</span><em>sc</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.tospark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.tospark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a BoltArrayLocal into a BoltArraySpark</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sc</strong> : SparkContext</p>
+<blockquote>
+<div><p>The SparkContext which will be used to create the BoltArraySpark</p>
+</div></blockquote>
+<p><strong>axis</strong> : tuple or int, optional, default=0</p>
+<blockquote>
+<div><p>The axis (or axes) across which this array will be parallelized</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">BoltArraySpark</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="local-overview.html" class="btn btn-neutral" title="Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0.dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
