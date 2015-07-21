@@ -28,6 +28,10 @@
     cursor: default;
 }
 
+body {
+	background-color: rgb(252,252,252);
+}
+
 #main {
 	border-left: 2px dotted rgb(100,100,100);
 	margin-left: -5px;
