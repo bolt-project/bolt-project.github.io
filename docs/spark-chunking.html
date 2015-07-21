@@ -170,14 +170,44 @@
           <div role="main" class="document">
             
   <div class="section" id="chunking">
-<h1>Chunking<a class="headerlink" href="#chunking" title="Permalink to this headline">¶</a></h1>
-<p>Another common use case for distributed arrays is breaking the values into chunks, and then performing parallized operations over the resulting subarrays (and optionally rebuilding the original array). Bolt uses this kind of chunking under the hood during it&#8217;s <span class="xref std std-ref">swap</span> operations, but we also expose chunking directly.</p>
-<p>To chunk an array, just call <cite>chunk</cite> and specify the desidred size of each chunk along each axis</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
+<span id="id1"></span><h1>Chunking<a class="headerlink" href="#chunking" title="Permalink to this headline">¶</a></h1>
+<p>When parallelizing operations over distributed arrays, sometimes you&#8217;ll want more fine-grained control than just which axis to operate over. We expose a <cite>chunk</cite> method for this use case, which is actually the same operation we use under the hood for distributed transposes.</p>
+<p>To chunk an array, just call <cite>chunk</cite> and specify the desidred size of each chunk along each axis of the arrays in the values. For example, starting with a simple array</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(100, 5)</span>
+<span class="go">(5, 20, 10)</span>
 </pre></div>
 </div>
+<p>We can chunk into subarrays of shape <cite>(5,5)</cite>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">chunk</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The &#8220;shape&#8221; is still the same</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(5, 20, 10)</span>
+</pre></div>
+</div>
+<p>But if we look at the first record of the underlying RDD and compare to the original, we see that the shapes are different</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">tordd</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(20, 10)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">tordd</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(5, 5)</span>
+</pre></div>
+</div>
+<p>While narray is chunked you can perform <code class="docutils literal"><span class="pre">map</span></code> operations which operate in parallel over the chunks (including operations that change shape)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>And you can restore the original with <code class="docutils literal"><span class="pre">unchunk</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">unchunk</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(5, 20, 10)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">unchunk</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(5, 20, 2)</span>
+</pre></div>
+</div>
+<p>Chunking is especially useful when elements defined by even individual axes or pairs of axes are very large (such as long time series or large images) and you want to operate in parallel over portions (like windows or tiles) and then continue with other array operations.</p>
 </div>
 
 
@@ -217,7 +247,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0.dev',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

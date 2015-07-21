@@ -175,7 +175,7 @@
 </pre></div>
 </div>
 <p>To use Bolt with one of its backends, follow the instructions below.</p>
-<p>If you just want to play around with Bolt, try the live <a class="reference external" href="http://try.bolt-project.org">notebooks</a> which use Docker and <a class="reference external" href="https://github.com/jupyter/tmpnb">tmpnb</a> to genreate temporary interactive notebook environments with all dependencies loaded. The same notebooks are available in this <a class="reference external" href="https://github.com/bolt-project/bolt-notebooks">repo</a>.</p>
+<p>If you just want to play around with Bolt, try the live <a class="reference external" href="http://try.bolt-project.org">notebooks</a> which use Docker and <a class="reference external" href="https://github.com/jupyter/tmpnb">tmpnb</a> to generate temporary interactive notebook environments with all dependencies loaded. The same notebooks are available in this <a class="reference external" href="https://github.com/bolt-project/bolt-notebooks">repo</a>.</p>
 </div>
 <div class="section" id="backends">
 <h2>Backends<a class="headerlink" href="#backends" title="Permalink to this headline">¶</a></h2>
@@ -192,7 +192,7 @@
 <div class="section" id="spark">
 <h3>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">¶</a></h3>
 <p>Bolt offers easy integration with Spark. Rather than make Spark a hard dependency, or add complex custom executables, using Bolt with Spark just requires that an existing valid <code class="docutils literal"><span class="pre">SparkContext</span></code> has been defined, either within an interactive notebook or inside an application. We cover the basics of a local installation here, but consult the official <a class="reference external" href="http://spark.apache.org/docs/latest/index.html">documentation</a> for more information, especially for cluster deployment.</p>
-<p>For local testing, the easiest way to get Spark download a prepackaged version <a href="#id1"><span class="problematic" id="id2">here_</span></a> (get version 1.4+), or if you are on Mac OS X, you can install using homebrew:</p>
+<p>For local testing, the easiest way to get Spark download a prepackaged version <a class="reference external" href="http://spark.apache.org/downloads.html">here</a> (get version 1.4+, compiled for any version of Hadoop), or if you are on Mac OS X, you can install using homebrew:</p>
 <div class="code bash highlight-python"><div class="highlight"><pre>$ brew install apache-spark
 </pre></div>
 </div>
@@ -223,7 +223,7 @@
 </div>
 <div class="section" id="docker-image">
 <h2>Docker image<a class="headerlink" href="#docker-image" title="Permalink to this headline">¶</a></h2>
-<p>We provide a Docker image with Bolt and its backends installed and configured, alongside  an example Jupyter notebook. This is a great way to out Bolt. The docker file is on <a class="reference external" href="http://github.com/bolt-project/bolt-docker">GitHub</a> and the image is hosted on <a class="reference external" href="https://registry.hub.docker.com/u/freemanlab/bolt/">Dockerhub</a>. To run the image on OS X follow these instructions:</p>
+<p>We provide a Docker image with Bolt and its backends installed and configured, alongside  an example Jupyter notebook. This is a great way to try out Bolt. The docker file is on <a class="reference external" href="http://github.com/bolt-project/bolt-docker">GitHub</a> and the image is hosted on <a class="reference external" href="https://registry.hub.docker.com/u/freemanlab/bolt/">Dockerhub</a>. To run the image on OS X follow these instructions:</p>
 <ul class="simple">
 <li>Download and install <a class="reference external" href="https://github.com/boot2docker/osx-installer/releases/tag/v1.7.1">boot2docker</a> (if you don&#8217;t have it already)</li>
 <li>Launch the <code class="docutils literal"><span class="pre">boot2docker</span></code> application from your <code class="docutils literal"><span class="pre">Applications</span></code> folder</li>
@@ -270,7 +270,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0.dev',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

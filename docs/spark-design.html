@@ -251,7 +251,7 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
 <span class="go">24</span>
 </pre></div>
 </div>
-<p>Swapping can be expensive because it incurs a shuffle, but we have leveraged our experience doing these oeprations at scale to make it as efficient as possible.</p>
+<p>Swapping can be expensive because it incurs a shuffle, but we have leveraged our experience doing these operations at scale to make it as efficient as possible.</p>
 <p>To understand our solution, consider two extremes. One one end, we could collect the entire array locally, reslice locally, and redistribute &#8211; but that will fail on out-of-memory datasets. On the other end, we could break up the values into singletons, tag each with an index, and do a massive and expensive shuffle to put them back together.</p>
 <p>Our approach is in the middle. We break up the values into &#8220;chunks&#8221;, only along dimensions that are being moved, and use chunk sizes that minimize the number of objects shuffled while avoiding objects that are too large (this is a configurable parameter, but our default has proven efficient at scale in practice).</p>
 <p>The entire process is lazy, which helps when composing it with other lazy operations, and properties like <code class="docutils literal"><span class="pre">shape</span></code> and <code class="docutils literal"><span class="pre">split</span></code> are automatically propagated.</p>
@@ -262,8 +262,7 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
 </div>
 <div class="section" id="stacking-chunking">
 <h2>Stacking / chunking<a class="headerlink" href="#stacking-chunking" title="Permalink to this headline">¶</a></h2>
-<p>For the common case of applying parallel operations to arrays, we provide</p>
-<p>You can read more in the sections on <a class="reference internal" href="spark-stacking.html#stacking"><span>Stacking</span></a> and <span class="xref std std-ref">chunking</span>.</p>
+<p>For more fine-grained control over applying parallel operations to distributed arrays, we provide methods for both <a class="reference internal" href="spark-stacking.html#stacking"><span>Stacking</span></a> (which groups records together for faster vectorized operations) and <a class="reference internal" href="spark-chunking.html#chunking"><span>Chunking</span></a> (which breaks records apart for increased parallelization).</p>
 </div>
 </div>
 
@@ -304,7 +303,7 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0.dev',
+            VERSION:'0.1.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
