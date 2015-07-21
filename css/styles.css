@@ -75,6 +75,12 @@ a:hover {
 	color: rgb(160, 121, 45);
 }
 
+#badge {
+	position: absolute;
+	top: 200px;
+	right: 20px;
+}
+
 @-moz-document url-prefix() {
     .content {
         margin-top: 5%;
@@ -92,6 +98,10 @@ a:hover {
 		-ms-transform: translateY(0%);
 		-o-transform: translateY(0%);
 		transform: translateY(0%);
+	}
+
+	#badge {
+		display: none;
 	}
 
 }
