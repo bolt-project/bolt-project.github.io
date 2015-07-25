@@ -77,8 +77,8 @@ a:hover {
 
 #badge {
 	position: absolute;
-	top: 200px;
-	right: 20px;
+	top: 250px;
+	right: 45px;
 }
 
 @-moz-document url-prefix() {
