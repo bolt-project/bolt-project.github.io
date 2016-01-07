@@ -170,9 +170,8 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>The core of Bolt is pure Python and the only dependency is <code class="docutils literal"><span class="pre">numpy</span></code>, so installation is straightforward. Obtain Python 2.7+ or 3.4+ (we strongly recommend using <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">Anaconda</a>), and then install with <code class="docutils literal"><span class="pre">pip</span></code></p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ pip install bolt-python
-</pre></div>
+<p>The core of Bolt is pure Python and the only dependency is <tt class="docutils literal"><span class="pre">numpy</span></tt>, so installation is straightforward. Obtain Python 2.7+ or 3.4+ (we strongly recommend using <a class="reference external" href="https://store.continuum.io/cshop/anaconda/">Anaconda</a>), and then install with <tt class="docutils literal"><span class="pre">pip</span></tt></p>
+<div class="code bash highlight-python"><pre>$ pip install bolt-python</pre>
 </div>
 <p>To use Bolt with one of its backends, follow the instructions below.</p>
 <p>If you just want to play around with Bolt, try the live <a class="reference external" href="http://try.bolt-project.org">notebooks</a> which use Docker and <a class="reference external" href="https://github.com/jupyter/tmpnb">tmpnb</a> to generate temporary interactive notebook environments with all dependencies loaded. The same notebooks are available in this <a class="reference external" href="https://github.com/bolt-project/bolt-notebooks">repo</a>.</p>
@@ -181,7 +180,7 @@
 <h2>Backends<a class="headerlink" href="#backends" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="local">
 <h3>Local<a class="headerlink" href="#local" title="Permalink to this headline">¶</a></h3>
-<p>The local backend just uses <code class="docutils literal"><span class="pre">numpy</span></code>, so nothing special required:</p>
+<p>The local backend just uses <tt class="docutils literal"><span class="pre">numpy</span></tt>, so nothing special required:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bolt</span> <span class="kn">import</span> <span class="n">ones</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
@@ -191,20 +190,19 @@
 </div>
 <div class="section" id="spark">
 <h3>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">¶</a></h3>
-<p>Bolt offers easy integration with Spark. Rather than make Spark a hard dependency, or add complex custom executables, using Bolt with Spark just requires that an existing valid <code class="docutils literal"><span class="pre">SparkContext</span></code> has been defined, either within an interactive notebook or inside an application. We cover the basics of a local installation here, but consult the official <a class="reference external" href="http://spark.apache.org/docs/latest/index.html">documentation</a> for more information, especially for cluster deployment.</p>
+<p>Bolt offers easy integration with Spark. Rather than make Spark a hard dependency, or add complex custom executables, using Bolt with Spark just requires that an existing valid <tt class="docutils literal"><span class="pre">SparkContext</span></tt> has been defined, either within an interactive notebook or inside an application. We cover the basics of a local installation here, but consult the official <a class="reference external" href="http://spark.apache.org/docs/latest/index.html">documentation</a> for more information, especially for cluster deployment.</p>
 <p>For local testing, the easiest way to get Spark download a prepackaged version <a class="reference external" href="http://spark.apache.org/downloads.html">here</a> (get version 1.4+, compiled for any version of Hadoop), or if you are on Mac OS X, you can install using homebrew:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ brew install apache-spark
-</pre></div>
+<div class="code bash highlight-python"><pre>$ brew install apache-spark</pre>
 </div>
-<p>Then just find and run the <code class="docutils literal"><span class="pre">pyspark</span></code> executable in the <code class="docutils literal"><span class="pre">bin</span></code> folder of your Spark installation.</p>
-<p>With Spark installed and deployed, you can launch through the <code class="docutils literal"><span class="pre">pyspark</span></code> executable at which point a <code class="docutils literal"><span class="pre">SparkContext</span></code> will already be defined as <code class="docutils literal"><span class="pre">sc</span></code>. To use it with Bolt pass <code class="docutils literal"><span class="pre">sc</span></code> as a constructor input:</p>
+<p>Then just find and run the <tt class="docutils literal"><span class="pre">pyspark</span></tt> executable in the <tt class="docutils literal"><span class="pre">bin</span></tt> folder of your Spark installation.</p>
+<p>With Spark installed and deployed, you can launch through the <tt class="docutils literal"><span class="pre">pyspark</span></tt> executable at which point a <tt class="docutils literal"><span class="pre">SparkContext</span></tt> will already be defined as <tt class="docutils literal"><span class="pre">sc</span></tt>. To use it with Bolt pass <tt class="docutils literal"><span class="pre">sc</span></tt> as a constructor input:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bolt</span> <span class="kn">import</span> <span class="n">ones</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(100, 20)</span>
 </pre></div>
 </div>
-<p>If you write a Spark application in Python and submit it with <code class="docutils literal"><span class="pre">spark-submit</span></code>, you would define a <code class="docutils literal"><span class="pre">SparkContext</span></code> within your application and then use it similarly with Bolt</p>
+<p>If you write a Spark application in Python and submit it with <tt class="docutils literal"><span class="pre">spark-submit</span></tt>, you would define a <tt class="docutils literal"><span class="pre">SparkContext</span></tt> within your application and then use it similarly with Bolt</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">appName</span><span class="o">=</span><span class="s">&#39;test&#39;</span><span class="p">,</span> <span class="n">master</span><span class="o">=</span><span class="s">&#39;local&#39;</span><span class="p">)</span>
 
@@ -215,8 +213,7 @@
 </pre></div>
 </div>
 <p>If you are using Spark on a cluster, you just need to run</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ pip install bolt-python
-</pre></div>
+<div class="code bash highlight-python"><pre>$ pip install bolt-python</pre>
 </div>
 <p>on all the of the cluster nodes.</p>
 </div>
@@ -226,9 +223,9 @@
 <p>We provide a Docker image with Bolt and its backends installed and configured, alongside  an example Jupyter notebook. This is a great way to try out Bolt. The docker file is on <a class="reference external" href="http://github.com/bolt-project/bolt-docker">GitHub</a> and the image is hosted on <a class="reference external" href="https://registry.hub.docker.com/u/freemanlab/bolt/">Dockerhub</a>. To run the image on OS X follow these instructions:</p>
 <ul class="simple">
 <li>Download and install <a class="reference external" href="https://github.com/boot2docker/osx-installer/releases/tag/v1.7.1">boot2docker</a> (if you don&#8217;t have it already)</li>
-<li>Launch the <code class="docutils literal"><span class="pre">boot2docker</span></code> application from your <code class="docutils literal"><span class="pre">Applications</span></code> folder</li>
-<li>Type <code class="docutils literal"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-i</span> <span class="pre">-t</span> <span class="pre">-p</span> <span class="pre">8888:8888</span> <span class="pre">freemanlab/bolt</span></code></li>
-<li>Point a web browser to <code class="docutils literal"><span class="pre">http://192.168.59.103:8888/</span></code></li>
+<li>Launch the <tt class="docutils literal"><span class="pre">boot2docker</span></tt> application from your <tt class="docutils literal"><span class="pre">Applications</span></tt> folder</li>
+<li>Type <tt class="docutils literal"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-i</span> <span class="pre">-t</span> <span class="pre">-p</span> <span class="pre">8888:8888</span> <span class="pre">freemanlab/bolt</span></tt></li>
+<li>Point a web browser to <tt class="docutils literal"><span class="pre">http://192.168.59.103:8888/</span></tt></li>
 </ul>
 </div>
 </div>
@@ -270,7 +267,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.0.dev',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -279,7 +276,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

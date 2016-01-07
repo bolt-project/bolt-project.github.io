@@ -171,23 +171,23 @@
             
   <div class="section" id="api">
 <h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
-<p>The local bolt array implements the <a class="reference external" href="overview-methods.html">core API</a>, as well as the additional methods listed here (for conversions). Full method documentation can be found below (methods directly inherited from numpy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code> not shown).</p>
+<p>The local bolt array implements the <a class="reference external" href="overview-methods.html">core API</a>, as well as the additional methods listed here (for conversions). Full method documentation can be found below (methods directly inherited from numpy&#8217;s <tt class="docutils literal"><span class="pre">ndarray</span></tt> not shown).</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.toarray" title="bolt.local.array.BoltArrayLocal.toarray"><code class="xref py py-obj docutils literal"><span class="pre">toarray</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.toarray" title="bolt.local.array.BoltArrayLocal.toarray"><tt class="xref py py-obj docutils literal"><span class="pre">toarray</span></tt></a>()</td>
 <td>Returns the underlying ndarray wrapped by this BoltArrayLocal</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.tordd" title="bolt.local.array.BoltArrayLocal.tordd"><code class="xref py py-obj docutils literal"><span class="pre">tordd</span></code></a>(sc[,&nbsp;axis])</td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.tordd" title="bolt.local.array.BoltArrayLocal.tordd"><tt class="xref py py-obj docutils literal"><span class="pre">tordd</span></tt></a>(sc[,&nbsp;axis])</td>
 <td>Converts a BoltArrayLocal into an RDD</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.tospark" title="bolt.local.array.BoltArrayLocal.tospark"><code class="xref py py-obj docutils literal"><span class="pre">tospark</span></code></a>(sc[,&nbsp;axis])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.tospark" title="bolt.local.array.BoltArrayLocal.tospark"><tt class="xref py py-obj docutils literal"><span class="pre">tospark</span></tt></a>(sc[,&nbsp;axis])</td>
 <td>Converts a BoltArrayLocal into a BoltArraySpark</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.toscalar" title="bolt.local.array.BoltArrayLocal.toscalar"><code class="xref py py-obj docutils literal"><span class="pre">toscalar</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.local.array.BoltArrayLocal.toscalar" title="bolt.local.array.BoltArrayLocal.toscalar"><tt class="xref py py-obj docutils literal"><span class="pre">toscalar</span></tt></a>()</td>
 <td>Returns the single scalar element contained in an array of shape (), if the array has that shape.</td>
 </tr>
 </tbody>
@@ -196,10 +196,10 @@
 <h2>Detailed API<a class="headerlink" href="#detailed-api" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="bolt.local.array.BoltArrayLocal">
-<em class="property">class </em><code class="descclassname">bolt.local.array.</code><code class="descname">BoltArrayLocal</code><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">bolt.local.array.</tt><tt class="descname">BoltArrayLocal</tt><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.concatenate">
-<code class="descname">concatenate</code><span class="sig-paren">(</span><em>arry</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.concatenate" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">concatenate</tt><big>(</big><em>arry</em>, <em>axis=0</em><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.concatenate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Join this array with another array.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -213,13 +213,13 @@
 
 <dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.display">
-<code class="descname">display</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.display"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.display" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">display</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.display"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.display" title="Permalink to this definition">¶</a></dt>
 <dd><p>Show a pretty-printed representation of this BoltArrayLocal</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.filter">
-<code class="descname">filter</code><span class="sig-paren">(</span><em>func</em>, <em>axis=(0</em>, <em>)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.filter" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">filter</tt><big>(</big><em>func</em>, <em>axis=(0</em>, <em>)</em><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter array along an axis.</p>
 <p>Applies a function which should evaluate to boolean,
 along a single axis or multiple axes. Array will be
@@ -247,8 +247,14 @@ keys, which may require a transpose/reshape.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="bolt.local.array.BoltArrayLocal.first">
+<tt class="descname">first</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.first"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first element of the array</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.map">
-<code class="descname">map</code><span class="sig-paren">(</span><em>func</em>, <em>axis=(0</em>, <em>)</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.map" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">map</tt><big>(</big><em>func</em>, <em>axis=(0</em>, <em>)</em><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.map" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply a function across an axis.</p>
 <p>Array will be aligned so that the desired set of axes
 are in the keys, which may require a transpose/reshape.</p>
@@ -275,7 +281,7 @@ are in the keys, which may require a transpose/reshape.</p>
 
 <dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.reduce">
-<code class="descname">reduce</code><span class="sig-paren">(</span><em>func</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.reduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.reduce" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">reduce</tt><big>(</big><em>func</em>, <em>axis=0</em><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.reduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.reduce" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reduce an array along an axis.</p>
 <p>Applies an associative/commutative function of two arguments
 cumulatively to all arrays along an axis. Array will be aligned
@@ -304,13 +310,13 @@ require a transpose/reshape.</p>
 
 <dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.toarray">
-<code class="descname">toarray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.toarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.toarray" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">toarray</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.toarray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.toarray" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the underlying ndarray wrapped by this BoltArrayLocal</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.tordd">
-<code class="descname">tordd</code><span class="sig-paren">(</span><em>sc</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.tordd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.tordd" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">tordd</tt><big>(</big><em>sc</em>, <em>axis=0</em><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.tordd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.tordd" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a BoltArrayLocal into an RDD</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -335,14 +341,14 @@ require a transpose/reshape.</p>
 
 <dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.toscalar">
-<code class="descname">toscalar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.toscalar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.toscalar" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">toscalar</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.toscalar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.toscalar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the single scalar element contained in an array of shape (), if
 the array has that shape. Returns self otherwise.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="bolt.local.array.BoltArrayLocal.tospark">
-<code class="descname">tospark</code><span class="sig-paren">(</span><em>sc</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.tospark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.tospark" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">tospark</tt><big>(</big><em>sc</em>, <em>axis=0</em><big>)</big><a class="reference internal" href="_modules/bolt/local/array.html#BoltArrayLocal.tospark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.array.BoltArrayLocal.tospark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a BoltArrayLocal into a BoltArraySpark</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -407,7 +413,7 @@ the array has that shape. Returns self otherwise.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.0.dev',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -416,7 +422,7 @@ the array has that shape. Returns self otherwise.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

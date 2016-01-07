@@ -177,16 +177,16 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.array" title="bolt.local.construct.ConstructLocal.array"><code class="xref py py-obj docutils literal"><span class="pre">array</span></code></a>(a[,&nbsp;dtype,&nbsp;order])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.array" title="bolt.local.construct.ConstructLocal.array"><tt class="xref py py-obj docutils literal"><span class="pre">array</span></tt></a>(a[,&nbsp;dtype,&nbsp;order])</td>
 <td>Create a local bolt array.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.ones" title="bolt.local.construct.ConstructLocal.ones"><code class="xref py py-obj docutils literal"><span class="pre">ones</span></code></a>(shape[,&nbsp;dtype,&nbsp;order])</td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.ones" title="bolt.local.construct.ConstructLocal.ones"><tt class="xref py py-obj docutils literal"><span class="pre">ones</span></tt></a>(shape[,&nbsp;dtype,&nbsp;order])</td>
 <td>Create a local bolt array of ones.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.zeros" title="bolt.local.construct.ConstructLocal.zeros"><code class="xref py py-obj docutils literal"><span class="pre">zeros</span></code></a>(shape[,&nbsp;dtype,&nbsp;order])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.zeros" title="bolt.local.construct.ConstructLocal.zeros"><tt class="xref py py-obj docutils literal"><span class="pre">zeros</span></tt></a>(shape[,&nbsp;dtype,&nbsp;order])</td>
 <td>Create a local bolt array of zeros.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.concatenate" title="bolt.local.construct.ConstructLocal.concatenate"><code class="xref py py-obj docutils literal"><span class="pre">concatenate</span></code></a>(arrays[,&nbsp;axis])</td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.local.construct.ConstructLocal.concatenate" title="bolt.local.construct.ConstructLocal.concatenate"><tt class="xref py py-obj docutils literal"><span class="pre">concatenate</span></tt></a>(arrays[,&nbsp;axis])</td>
 <td>Join a sequence of arrays together.</td>
 </tr>
 </tbody>
@@ -194,23 +194,23 @@
 </div>
 <div class="section" id="spark">
 <h2>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">¶</a></h2>
-<p>Constructing bolt arrays in Spark is similar, except the constructors must be provided with a <code class="docutils literal"><span class="pre">SparkContext</span></code>. This is normally provided when running Spark interactively, or created at the beginning of a Spark job. In addition, you can specify which axes will be distributed. Briefly, arrays are represented using a subset of axes as the keys. So a five dimensional array specified with <code class="docutils literal"><span class="pre">axis=(0,</span> <span class="pre">1)</span></code> would be represented as <code class="docutils literal"><span class="pre">key,value</span></code> pairs where the keys are two-tuples and the values are three-dimensional arrays. Bolt is designed so that its methods are invariant to the choice of distributed axes, but the choice will affect performance of many operations.</p>
+<p>Constructing bolt arrays in Spark is similar, except the constructors must be provided with a <tt class="docutils literal"><span class="pre">SparkContext</span></tt>. This is normally provided when running Spark interactively, or created at the beginning of a Spark job. In addition, you can specify which axes will be distributed. Briefly, arrays are represented using a subset of axes as the keys. So a five dimensional array specified with <tt class="docutils literal"><span class="pre">axis=(0,</span> <span class="pre">1)</span></tt> would be represented as <tt class="docutils literal"><span class="pre">key,value</span></tt> pairs where the keys are two-tuples and the values are three-dimensional arrays. Bolt is designed so that its methods are invariant to the choice of distributed axes, but the choice will affect performance of many operations.</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.array" title="bolt.spark.construct.ConstructSpark.array"><code class="xref py py-obj docutils literal"><span class="pre">array</span></code></a>(a[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.array" title="bolt.spark.construct.ConstructSpark.array"><tt class="xref py py-obj docutils literal"><span class="pre">array</span></tt></a>(a[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
 <td>Create a spark bolt array from a local array.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.ones" title="bolt.spark.construct.ConstructSpark.ones"><code class="xref py py-obj docutils literal"><span class="pre">ones</span></code></a>(shape[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.ones" title="bolt.spark.construct.ConstructSpark.ones"><tt class="xref py py-obj docutils literal"><span class="pre">ones</span></tt></a>(shape[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
 <td>Create a spark bolt array of ones.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.zeros" title="bolt.spark.construct.ConstructSpark.zeros"><code class="xref py py-obj docutils literal"><span class="pre">zeros</span></code></a>(shape[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.zeros" title="bolt.spark.construct.ConstructSpark.zeros"><tt class="xref py py-obj docutils literal"><span class="pre">zeros</span></tt></a>(shape[,&nbsp;context,&nbsp;axis,&nbsp;dtype])</td>
 <td>Create a spark bolt array of zeros.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.concatenate" title="bolt.spark.construct.ConstructSpark.concatenate"><code class="xref py py-obj docutils literal"><span class="pre">concatenate</span></code></a>(arrays[,&nbsp;axis])</td>
+<tr class="row-even"><td><a class="reference internal" href="#bolt.spark.construct.ConstructSpark.concatenate" title="bolt.spark.construct.ConstructSpark.concatenate"><tt class="xref py py-obj docutils literal"><span class="pre">concatenate</span></tt></a>(arrays[,&nbsp;axis])</td>
 <td>Join two bolt arrays together, at least one of which is in spark.</td>
 </tr>
 </tbody>
@@ -252,10 +252,10 @@
 <h2>Detailed API<a class="headerlink" href="#detailed-api" title="Permalink to this headline">¶</a></h2>
 <h3>Local</h3><dl class="class">
 <dt id="bolt.local.construct.ConstructLocal">
-<em class="property">class </em><code class="descclassname">bolt.local.construct.</code><code class="descname">ConstructLocal</code><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">bolt.local.construct.</tt><tt class="descname">ConstructLocal</tt><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="staticmethod">
 <dt id="bolt.local.construct.ConstructLocal.array">
-<em class="property">static </em><code class="descname">array</code><span class="sig-paren">(</span><em>a</em>, <em>dtype=None</em>, <em>order='C'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.array" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">array</tt><big>(</big><em>a</em>, <em>dtype=None</em>, <em>order='C'</em><big>)</big><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a local bolt array.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -287,7 +287,7 @@ be determined from the data. (see numpy)</p>
 
 <dl class="staticmethod">
 <dt id="bolt.local.construct.ConstructLocal.concatenate">
-<em class="property">static </em><code class="descname">concatenate</code><span class="sig-paren">(</span><em>arrays</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.concatenate" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">concatenate</tt><big>(</big><em>arrays</em>, <em>axis=0</em><big>)</big><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.concatenate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Join a sequence of arrays together.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -312,7 +312,7 @@ be determined from the data. (see numpy)</p>
 
 <dl class="staticmethod">
 <dt id="bolt.local.construct.ConstructLocal.ones">
-<em class="property">static </em><code class="descname">ones</code><span class="sig-paren">(</span><em>shape</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em>, <em>order='C'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.ones" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">ones</tt><big>(</big><em>shape</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em>, <em>order='C'</em><big>)</big><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.ones" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a local bolt array of ones.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -341,7 +341,7 @@ be determined from the data. (see numpy)</p>
 
 <dl class="staticmethod">
 <dt id="bolt.local.construct.ConstructLocal.zeros">
-<em class="property">static </em><code class="descname">zeros</code><span class="sig-paren">(</span><em>shape</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em>, <em>order='C'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.zeros" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">zeros</tt><big>(</big><em>shape</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em>, <em>order='C'</em><big>)</big><a class="reference internal" href="_modules/bolt/local/construct.html#ConstructLocal.zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.local.construct.ConstructLocal.zeros" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a local bolt array of zeros.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -372,10 +372,10 @@ be determined from the data. (see numpy)</p>
 
 <h3>Spark</h3><dl class="class">
 <dt id="bolt.spark.construct.ConstructSpark">
-<em class="property">class </em><code class="descclassname">bolt.spark.construct.</code><code class="descname">ConstructSpark</code><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">bolt.spark.construct.</tt><tt class="descname">ConstructSpark</tt><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="staticmethod">
 <dt id="bolt.spark.construct.ConstructSpark.array">
-<em class="property">static </em><code class="descname">array</code><span class="sig-paren">(</span><em>a</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.array" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">array</tt><big>(</big><em>a</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=None</em><big>)</big><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a spark bolt array from a local array.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -413,7 +413,7 @@ be determined from the data. (see numpy)</p>
 
 <dl class="staticmethod">
 <dt id="bolt.spark.construct.ConstructSpark.concatenate">
-<em class="property">static </em><code class="descname">concatenate</code><span class="sig-paren">(</span><em>arrays</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.concatenate" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">concatenate</tt><big>(</big><em>arrays</em>, <em>axis=0</em><big>)</big><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.concatenate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Join two bolt arrays together, at least one of which is in spark.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -440,7 +440,7 @@ or an array-like.</p>
 
 <dl class="staticmethod">
 <dt id="bolt.spark.construct.ConstructSpark.ones">
-<em class="property">static </em><code class="descname">ones</code><span class="sig-paren">(</span><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.ones" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">ones</tt><big>(</big><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><big>)</big><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.ones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.ones" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a spark bolt array of ones.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -476,7 +476,7 @@ be determined from the data. (see numpy)</p>
 
 <dl class="staticmethod">
 <dt id="bolt.spark.construct.ConstructSpark.zeros">
-<em class="property">static </em><code class="descname">zeros</code><span class="sig-paren">(</span><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.zeros" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">zeros</tt><big>(</big><em>shape</em>, <em>context=None</em>, <em>axis=(0</em>, <em>)</em>, <em>dtype=&lt;type 'numpy.float64'&gt;</em><big>)</big><a class="reference internal" href="_modules/bolt/spark/construct.html#ConstructSpark.zeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bolt.spark.construct.ConstructSpark.zeros" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a spark bolt array of zeros.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -552,7 +552,7 @@ be determined from the data. (see numpy)</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.0.dev',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -561,7 +561,7 @@ be determined from the data. (see numpy)</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

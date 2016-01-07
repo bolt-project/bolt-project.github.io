@@ -171,7 +171,7 @@
             
   <div class="section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>The Spark implementation of the Bolt array uses an RDD of <code class="docutils literal"><span class="pre">key,value</span></code> pairs to represent different parts of a multi-dimensional array. We express common ndarray operations through distributed operatiions on this RDD, and keep track of shape parameters and how they are affected by manipulations.</p>
+<p>The Spark implementation of the Bolt array uses an RDD of <tt class="docutils literal"><span class="pre">key,value</span></tt> pairs to represent different parts of a multi-dimensional array. We express common ndarray operations through distributed operatiions on this RDD, and keep track of shape parameters and how they are affected by manipulations.</p>
 <p>If we start by creating an array</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">blt</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 </pre></div>
@@ -199,7 +199,7 @@
 <span class="go">(4, 3, 2)</span>
 </pre></div>
 </div>
-<p>The data structure is defined by which axes are represented in the keys, and which are represented in the values. The <code class="docutils literal"><span class="pre">keys</span></code> are tuples and the <code class="docutils literal"><span class="pre">values</span></code> are ndarrays. You can think of each key as providing an index along a subset of axes. We call the axis at which we switch from keys to values the <code class="docutils literal"><span class="pre">split</span></code>.</p>
+<p>The data structure is defined by which axes are represented in the keys, and which are represented in the values. The <tt class="docutils literal"><span class="pre">keys</span></tt> are tuples and the <tt class="docutils literal"><span class="pre">values</span></tt> are ndarrays. You can think of each key as providing an index along a subset of axes. We call the axis at which we switch from keys to values the <tt class="docutils literal"><span class="pre">split</span></tt>.</p>
 <p>It&#8217;s easy to inspect the &#8220;shape&#8221; of either part</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">split</span>
@@ -225,7 +225,7 @@
 <span class="go">array([ 6.,  6.,  6.,  6.])</span>
 </pre></div>
 </div>
-<p>As part of the <a class="reference external" href="overview-methods.html">core API</a>, we expose the functional operators <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, and <code class="docutils literal"><span class="pre">reduce</span></code>, which are like their counterparts on the RDD except with the additional ability to be applied along a specified set of axes.</p>
+<p>As part of the <a class="reference external" href="overview-methods.html">core API</a>, we expose the functional operators <tt class="docutils literal"><span class="pre">map</span></tt>, <tt class="docutils literal"><span class="pre">filter</span></tt>, and <tt class="docutils literal"><span class="pre">reduce</span></tt>, which are like their counterparts on the RDD except with the additional ability to be applied along a specified set of axes.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 4)</span>
@@ -235,20 +235,20 @@
 <span class="go">(2, 3)</span>
 </pre></div>
 </div>
-<p>We do not expose other Spark operations in order to ensure that manipulations generate valid Bolt arrays. However, the underlying RDD can always be accessed by developers via the <code class="docutils literal"><span class="pre">tordd()</span></code> method.</p>
+<p>We do not expose other Spark operations in order to ensure that manipulations generate valid Bolt arrays. However, the underlying RDD can always be accessed by developers via the <tt class="docutils literal"><span class="pre">tordd()</span></tt> method.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">todd</span><span class="p">()</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
 <span class="go">[((0,), array([ 1.,  1.,  1.])), ((1,), array([ 1.,  1.,  1.]))]</span>
 </pre></div>
 </div>
-<p>In addition, the Spark methods <code class="docutils literal"><span class="pre">cache</span></code> and <code class="docutils literal"><span class="pre">unpersist</span></code> are available to control the caching of the underlying RDD, which can speed up certain workflows by storing raw data or intermediate results in distributed memory.</p>
+<p>In addition, the Spark methods <tt class="docutils literal"><span class="pre">cache</span></tt> and <tt class="docutils literal"><span class="pre">unpersist</span></tt> are available to control the caching of the underlying RDD, which can speed up certain workflows by storing raw data or intermediate results in distributed memory.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">cache</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">tordd</span><span class="p">()</span><span class="o">.</span><span class="n">is_cached</span>
 <span class="go">True</span>
 </pre></div>
 </div>
-<p>Most operations are lazy, except where it is neccessary to perform a computation before proceeding &#8211; usually because the shape of the resulting object depends on evaluation (e.g. in <code class="docutils literal"><span class="pre">filter</span></code>).</p>
+<p>Most operations are lazy, except where it is neccessary to perform a computation before proceeding &#8211; usually because the shape of the resulting object depends on evaluation (e.g. in <tt class="docutils literal"><span class="pre">filter</span></tt>).</p>
 <p>For more info, read the <a class="reference external" href="spark-design.html">design</a> section for details on implementation, and see the full <a class="reference external" href="spark-api.html">API documentation</a>.</p>
 </div>
 
@@ -289,7 +289,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.0.dev',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -298,7 +298,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

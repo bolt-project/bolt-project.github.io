@@ -171,9 +171,9 @@
             
   <div class="section" id="core-api">
 <h1>Core API<a class="headerlink" href="#core-api" title="Permalink to this headline">¶</a></h1>
-<p>The base object in <code class="docutils literal"><span class="pre">bolt</span></code> defines a core set of ndarray functionality, as well as a subset functional operators. Different implementations are provided for different settings. The current ones are:</p>
-<p><code class="docutils literal"><span class="pre">bolt.local</span></code> for local computation with NumPy <br /> <code class="docutils literal"><span class="pre">bolt.spark</span></code> for distributed computation with Spark</p>
-<p>The core methods currently avaialble on all <code class="docutils literal"><span class="pre">bolt</span></code> arrays are as follows.</p>
+<p>The base object in <tt class="docutils literal"><span class="pre">bolt</span></tt> defines a core set of ndarray functionality, as well as a subset functional operators. Different implementations are provided for different settings. The current ones are:</p>
+<p><tt class="docutils literal"><span class="pre">bolt.local</span></tt> for local computation with NumPy <br /> <tt class="docutils literal"><span class="pre">bolt.spark</span></tt> for distributed computation with Spark</p>
+<p>The core methods currently avaialble on all <tt class="docutils literal"><span class="pre">bolt</span></tt> arrays are as follows.</p>
 <p>Reductions along axes:</p>
 <table border="1" class="longtable docutils">
 <colgroup>
@@ -181,22 +181,22 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">sum</span></code>(axis)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">sum</span></tt>(axis)</td>
 <td>Return the sum of the array elements over the given axis.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">mean</span></code>(axis)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">mean</span></tt>(axis)</td>
 <td>Return the mean of the array elements over the given axis.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">var</span></code>(axis)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">var</span></tt>(axis)</td>
 <td>Return the variance of the array elements over the given axis.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">std</span></code>(axis)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">std</span></tt>(axis)</td>
 <td>Return the standard deviation of the array elements over the given axis.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">max</span></code>(axis)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">max</span></tt>(axis)</td>
 <td>Return the maximum of the array elements over the given axis or axes.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">min</span></code>(axis)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">min</span></tt>(axis)</td>
 <td>Return the minimum of the array elements over the given axis or axes.</td>
 </tr>
 </tbody>
@@ -208,19 +208,19 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">transpose</span></code>(axis)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">transpose</span></tt>(axis)</td>
 <td>Return an array with the axes transposed.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">squeeze</span></code>(axis)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">squeeze</span></tt>(axis)</td>
 <td>Remove one or more single-dimensional axes from the array.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">swapaxes</span></code>(axis1,&nbsp;axis2)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">swapaxes</span></tt>(axis1,&nbsp;axis2)</td>
 <td>Return an array with two axes interchanged.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">reshape</span></code>(axis)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">reshape</span></tt>(axis)</td>
 <td>Return an array with the same data but a new shape.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">T</span></code></td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">T</span></tt></td>
 <td>Transpose by reversing the order of the axes.</td>
 </tr>
 </tbody>
@@ -232,16 +232,16 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">shape</span></code></td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">shape</span></tt></td>
 <td>Size of each dimension.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">size</span></code></td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt></td>
 <td>Total number of elements.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ndim</span></code></td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">ndim</span></tt></td>
 <td>Number of dimensions.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">dtype</span></code></td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">dtype</span></tt></td>
 <td>Data-type of array.</td>
 </tr>
 </tbody>
@@ -253,18 +253,18 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">map</span></code>(func,&nbsp;axis)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">map</span></tt>(func,&nbsp;axis)</td>
 <td>Apply a function across one or more axes.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">reduce</span></code>(func,&nbsp;axis)</td>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">reduce</span></tt>(func,&nbsp;axis,&nbsp;keepdims)</td>
 <td>Reduce an array across one or more axes.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code>(func,&nbsp;axis)</td>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">filter</span></tt>(func,&nbsp;axis)</td>
 <td>Filter an array across one or more axes.</td>
 </tr>
 </tbody>
 </table>
-<p>And also slicing (e.g. <code class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">0:100]</span></code>, <code class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">:]</span></code>) and indexing (e.g. <code class="docutils literal"><span class="pre">x[[0,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">3]]</span></code>)</p>
+<p>And also slicing (e.g. <tt class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">0:100]</span></tt>, <tt class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">:]</span></tt>) and indexing (e.g. <tt class="docutils literal"><span class="pre">x[[0,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">3]]</span></tt>)</p>
 <p>We aim to replicate a large fraction of the NumPy API, so if there is something that we are missing that you would be interested in having, or something that you would like to contribute, create an issue.</p>
 <p>For further details on the implementations, as well as functionality specific to the different modes, see the documentation for <a class="reference external" href="spark.html">bolt.spark</a> and <a class="reference external" href="local.html">bolt.local</a>.</p>
 </div>
@@ -306,7 +306,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.0.dev',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -315,7 +315,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -1,0 +1,337 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Core API</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="None" href="index.html"/>
+        <link rel="up" title="Overview" href="overview.html"/>
+        <link rel="next" title="Related work" href="overview-related.html"/>
+        <link rel="prev" title="Motivation" href="overview-motivation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> bolt
+        
+
+        
+          
+          <img src="_static/header-logo-small.svg" class="logo" />
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="overview.html">Overview</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Core API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#backends">Backends</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#local">Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#spark">Spark</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#docker-image">Docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="construction.html">Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#local">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#spark">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">Spark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spark-overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#swapping">Swapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#transposing-reshaping">Transposing / reshaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#stacking-chunking">Stacking / chunking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spark-stacking.html">Stacking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-chunking.html">Chunking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-api.html">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="local.html">Local</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="local-overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local-api.html">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="local-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">bolt</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="overview.html">Overview</a> &raquo;</li>
+      
+    <li>Core API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/overview-methods.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="core-api">
+<h1>Core API<a class="headerlink" href="#core-api" title="Permalink to this headline">¶</a></h1>
+<p>The base object in <code class="docutils literal"><span class="pre">bolt</span></code> defines a core set of ndarray functionality, as well as a subset functional operators. Different implementations are provided for different settings. The current ones are:</p>
+<p><code class="docutils literal"><span class="pre">bolt.local</span></code> for local computation with NumPy <br /> <code class="docutils literal"><span class="pre">bolt.spark</span></code> for distributed computation with Spark</p>
+<p>The core methods currently avaialble on all <code class="docutils literal"><span class="pre">bolt</span></code> arrays are as follows.</p>
+<p>Reductions along axes:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">sum</span></code>(axis)</td>
+<td>Return the sum of the array elements over the given axis.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">mean</span></code>(axis)</td>
+<td>Return the mean of the array elements over the given axis.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">var</span></code>(axis)</td>
+<td>Return the variance of the array elements over the given axis.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">std</span></code>(axis)</td>
+<td>Return the standard deviation of the array elements over the given axis.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">max</span></code>(axis)</td>
+<td>Return the maximum of the array elements over the given axis or axes.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">min</span></code>(axis)</td>
+<td>Return the minimum of the array elements over the given axis or axes.</td>
+</tr>
+</tbody>
+</table>
+<p>Shaping/transposing:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">transpose</span></code>(axis)</td>
+<td>Return an array with the axes transposed.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">squeeze</span></code>(axis)</td>
+<td>Remove one or more single-dimensional axes from the array.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">swapaxes</span></code>(axis1,&nbsp;axis2)</td>
+<td>Return an array with two axes interchanged.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">reshape</span></code>(axis)</td>
+<td>Return an array with the same data but a new shape.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">T</span></code></td>
+<td>Transpose by reversing the order of the axes.</td>
+</tr>
+</tbody>
+</table>
+<p>Properties:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">shape</span></code></td>
+<td>Size of each dimension.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">size</span></code></td>
+<td>Total number of elements.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">ndim</span></code></td>
+<td>Number of dimensions.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">dtype</span></code></td>
+<td>Data-type of array.</td>
+</tr>
+</tbody>
+</table>
+<p>Functional operators:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">map</span></code>(func,&nbsp;axis)</td>
+<td>Apply a function across one or more axes.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">reduce</span></code>(func,&nbsp;axis)</td>
+<td>Reduce an array across one or more axes.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">filter</span></code>(func,&nbsp;axis)</td>
+<td>Filter an array across one or more axes.</td>
+</tr>
+</tbody>
+</table>
+<p>And also slicing (e.g. <code class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">0:100]</span></code>, <code class="docutils literal"><span class="pre">x[0:10,</span> <span class="pre">:]</span></code>) and indexing (e.g. <code class="docutils literal"><span class="pre">x[[0,</span> <span class="pre">1,</span> <span class="pre">2],</span> <span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">3]]</span></code>)</p>
+<p>We aim to replicate a large fraction of the NumPy API, so if there is something that we are missing that you would be interested in having, or something that you would like to contribute, create an issue.</p>
+<p>For further details on the implementations, as well as functionality specific to the different modes, see the documentation for <a class="reference external" href="spark.html">bolt.spark</a> and <a class="reference external" href="local.html">bolt.local</a>.</p>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="overview-related.html" class="btn btn-neutral float-right" title="Related work" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview-motivation.html" class="btn btn-neutral" title="Motivation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.2.0.dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

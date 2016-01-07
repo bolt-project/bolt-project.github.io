@@ -172,13 +172,13 @@
   <div class="section" id="motivation">
 <h1>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h1>
 <p>We and others have worked with multidimensional arrays in both local and distributed environments across multiple languages. The Python scientific computing stack is great for working with arrays that fit in memory. New distributed computing platforms, especially Spark, have made it easy to flexibly implement distributed workflows that scale well to potentially massive data sets. But it is not straightforward to use these tools for working with arrays in Python, or move seamlessly between small, medium, and very large data sets.</p>
-<p>We want to be able to build projects on an interface like NumPy&#8217;s <code class="docutils literal"><span class="pre">ndarray</span></code> and know that we can leverage either local or distributed operations. And we want to target Python because of its rich libaries for scientific computing and machine learning. Specifically, we want an object that:</p>
+<p>We want to be able to build projects on an interface like NumPy&#8217;s <tt class="docutils literal"><span class="pre">ndarray</span></tt> and know that we can leverage either local or distributed operations. And we want to target Python because of its rich libaries for scientific computing and machine learning. Specifically, we want an object that:</p>
 <ul class="simple">
-<li>implements most of the <code class="docutils literal"><span class="pre">ndarray</span></code> interface</li>
-<li>implements a subset of functional operators (e.g. <code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, <code class="docutils literal"><span class="pre">reduce</span></code>)</li>
+<li>implements most of the <tt class="docutils literal"><span class="pre">ndarray</span></tt> interface</li>
+<li>implements a subset of functional operators (e.g. <tt class="docutils literal"><span class="pre">map</span></tt>, <tt class="docutils literal"><span class="pre">filter</span></tt>, <tt class="docutils literal"><span class="pre">reduce</span></tt>)</li>
 <li>supports a variety of backends (e.g. local, multi-core, distributed)</li>
 </ul>
-<p>For distributed computation, we currently target Spark&#8217;s <code class="docutils literal"><span class="pre">RDD</span></code> (resiliant distributed dataset), which provides an elegant API for functional operations (<code class="docutils literal"><span class="pre">map</span></code>, <code class="docutils literal"><span class="pre">reduce</span></code>, <code class="docutils literal"><span class="pre">join</span></code>, <code class="docutils literal"><span class="pre">filter</span></code>, etc.) but is not easy to work with as an multidimensional array. Other projects have developed some of the neccessary abstractions (e.g. <a class="reference external" href="https://github.com/thunder-project/thunder">Thunder</a>, <a class="reference external" href="https://github.com/ogrisel/spylearn">spylearn</a>, <a class="reference external" href="https://github.com/lensacom/sparkit-learn">sparkit-learn</a>). We hope to solve this problem once well so others can use and build on it.</p>
+<p>For distributed computation, we currently target Spark&#8217;s <tt class="docutils literal"><span class="pre">RDD</span></tt> (resiliant distributed dataset), which provides an elegant API for functional operations (<tt class="docutils literal"><span class="pre">map</span></tt>, <tt class="docutils literal"><span class="pre">reduce</span></tt>, <tt class="docutils literal"><span class="pre">join</span></tt>, <tt class="docutils literal"><span class="pre">filter</span></tt>, etc.) but is not easy to work with as an multidimensional array. Other projects have developed some of the neccessary abstractions (e.g. <a class="reference external" href="https://github.com/thunder-project/thunder">Thunder</a>, <a class="reference external" href="https://github.com/ogrisel/spylearn">spylearn</a>, <a class="reference external" href="https://github.com/lensacom/sparkit-learn">sparkit-learn</a>). We hope to solve this problem once well so others can use and build on it.</p>
 <p>Bolt aims to implement an object with the properties list above. It currently supports both NumPy (for local computation), and Spark (for distributed computation), but we envision adding other backends in the future.</p>
 <p>The project is in its early stages, so we welcome feedback, ideas, and use cases, just join us in the <a class="reference external" href="https://gitter.im/bolt-project/bolt">chatroom</a>.</p>
 </div>
@@ -220,7 +220,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.0.dev',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -229,7 +229,7 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

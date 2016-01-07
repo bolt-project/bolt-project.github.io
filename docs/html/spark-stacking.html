@@ -1,0 +1,278 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Stacking</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="None" href="index.html"/>
+        <link rel="up" title="Spark" href="spark.html"/>
+        <link rel="next" title="Chunking" href="spark-chunking.html"/>
+        <link rel="prev" title="Design" href="spark-design.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> bolt
+        
+
+        
+          
+          <img src="_static/header-logo-small.svg" class="logo" />
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview-motivation.html">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-methods.html">Core API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-related.html">Related work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview-thanks.html">Thanks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#backends">Backends</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#local">Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#spark">Spark</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#docker-image">Docker image</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="construction.html">Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#local">Local</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#spark">Spark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="construction.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="spark.html">Spark</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="spark-overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-design.html">Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#swapping">Swapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#transposing-reshaping">Transposing / reshaping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spark-design.html#stacking-chunking">Stacking / chunking</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Stacking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-chunking.html">Chunking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spark-api.html">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spark-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="local.html">Local</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="local-overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="local-api.html">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="local-api.html#detailed-api">Detailed API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">bolt</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="spark.html">Spark</a> &raquo;</li>
+      
+    <li>Stacking</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spark-stacking.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="stacking">
+<span id="id1"></span><h1>Stacking<a class="headerlink" href="#stacking" title="Permalink to this headline">¶</a></h1>
+<p>A common use case for distributed arrays is applying functions in parallel. In general, when calling <code class="docutils literal"><span class="pre">map</span></code>, functions will be applied to the <code class="docutils literal"><span class="pre">value</span></code> of each <code class="docutils literal"><span class="pre">key,value</span></code> record, which is a NumPy array representing a subset of axes. For example, if we have the following Bolt array:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(100, 5)</span>
+</pre></div>
+</div>
+<p>each value is a <code class="docutils literal"><span class="pre">(5,)</span></code> array</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">tordd</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(5,)</span>
+</pre></div>
+</div>
+<p>For some operations, it can be more efficient to apply functions to groups of records at once. For example, when calling one of the <code class="docutils literal"><span class="pre">partial_fit</span></code> methods from <code class="docutils literal"><span class="pre">scikit-learn</span></code>, which take an arbitrary number of data points and estimate model parameters. We provide a method <code class="docutils literal"><span class="pre">stack</span></code> to aggregate records within partitions. The resulting <code class="docutils literal"><span class="pre">StackedArray</span></code> has the same intrinstic shape, but records have been aggregated to leverage faster performance by operating on larger arrays. The only parameter is the <code class="docutils literal"><span class="pre">size</span></code>, the number of records aggregated per partition.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(100, 5)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">tordd</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(10, 5)</span>
+</pre></div>
+</div>
+<p>To ensure proper shape handling, we restrict functionality to <code class="docutils literal"><span class="pre">map</span></code>, and the mapped function must return an <code class="docutils literal"><span class="pre">ndarray</span></code>. We automatically infer and propagate transformations of shape, and after applying a set of function(s) you can recreate a Bolt array using <code class="docutils literal"><span class="pre">unstack</span></code>.</p>
+<p>As an example use case, imagine we have one hundred 5-d points we want to cluster</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">MiniBatchKMeans</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">km</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>if we stack into groups of 5 and apply a <code class="docutils literal"><span class="pre">partial_fit</span></code>, we end up with 20 fitted models, each a <code class="docutils literal"><span class="pre">(2,</span> <span class="pre">5)</span></code> array</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fits</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">km</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fits</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(20, 2, 5)</span>
+</pre></div>
+</div>
+<p>which we can use to estimate a model average</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fits</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(2, 5)</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="spark-chunking.html" class="btn btn-neutral float-right" title="Chunking" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="spark-design.html" class="btn btn-neutral" title="Design" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.2.0.dev',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

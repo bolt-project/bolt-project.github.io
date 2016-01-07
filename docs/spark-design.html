@@ -177,8 +177,8 @@
 <li>we want to easily and quickly change which axes we parallelize over</li>
 <li>we want to chain basic functional parallel operators alongside ndarray-style manipulations</li>
 </ul>
-<p>How do we achieve this? The primitive object in Spark is a distributed collection of <code class="docutils literal"><span class="pre">key,value</span></code> pair records. The <code class="docutils literal"><span class="pre">BoltArraySpark</span></code> uses keys and values to separately represent axes of a single array. The keys are tuples that encode the indices of the &#8220;parallelized&#8221;
-axes, while each value is a NumPy <code class="docutils literal"><span class="pre">ndarray</span></code> representing all the &#8220;localized&#8221; axes. For example, in a <code class="docutils literal"><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">4)</span></code> array of ones</p>
+<p>How do we achieve this? The primitive object in Spark is a distributed collection of <tt class="docutils literal"><span class="pre">key,value</span></tt> pair records. The <tt class="docutils literal"><span class="pre">BoltArraySpark</span></tt> uses keys and values to separately represent axes of a single array. The keys are tuples that encode the indices of the &#8220;parallelized&#8221;
+axes, while each value is a NumPy <tt class="docutils literal"><span class="pre">ndarray</span></tt> representing all the &#8220;localized&#8221; axes. For example, in a <tt class="docutils literal"><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">4)</span></tt> array of ones</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 4)</span>
@@ -189,12 +189,12 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
 <span class="go">[(0,), (1,)]</span>
 </pre></div>
 </div>
-<p>and each value is a <code class="docutils literal"><span class="pre">(3,</span> <span class="pre">4)</span></code> array</p>
+<p>and each value is a <tt class="docutils literal"><span class="pre">(3,</span> <span class="pre">4)</span></tt> array</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">tordd</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="o">.</span><span class="n">collect</span><span class="p">()]</span>
 <span class="go">[(3, 4), (3, 4)]</span>
 </pre></div>
 </div>
-<p>By convention, the key axes always come before the value axes, and we define an array&#8217;s <code class="docutils literal"><span class="pre">split</span></code> as the number of key axes. During construction or loading, you can decide which axes to use as the keys. For example, just the first</p>
+<p>By convention, the key axes always come before the value axes, and we define an array&#8217;s <tt class="docutils literal"><span class="pre">split</span></tt> as the number of key axes. During construction or loading, you can decide which axes to use as the keys. For example, just the first</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">tordd</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
 <span class="go">[(0,), (1,)]</span>
@@ -213,8 +213,8 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
 <p>Array methods are invariant to the choice of split, but performance can be strongly affected, especially when performing parallelized operations.</p>
 <div class="section" id="swapping">
 <h2>Swapping<a class="headerlink" href="#swapping" title="Permalink to this headline">¶</a></h2>
-<p>An important operation on the <code class="docutils literal"><span class="pre">BoltArraySpark</span></code> is changing which axes are parallelized. We call this &#8220;swapping&#8221; because it moves key axes to value axes (or vice versa), and it&#8217;s the core of our <code class="docutils literal"><span class="pre">transpose</span></code> and <code class="docutils literal"><span class="pre">reshape</span></code> implementations.</p>
-<p>The <code class="docutils literal"><span class="pre">swap</span></code> function takes a set of key axes that will be moved to value axes, and value axes that will be broken up to become key axes. By convention, the key axes that are swapped to value axes are placed <em>after</em> the split, and the value axes that move to the key axes are placed <em>before</em> the split. In both cases, the new axes have the same order as in the starting array. As examples,</p>
+<p>An important operation on the <tt class="docutils literal"><span class="pre">BoltArraySpark</span></tt> is changing which axes are parallelized. We call this &#8220;swapping&#8221; because it moves key axes to value axes (or vice versa), and it&#8217;s the core of our <tt class="docutils literal"><span class="pre">transpose</span></tt> and <tt class="docutils literal"><span class="pre">reshape</span></tt> implementations.</p>
+<p>The <tt class="docutils literal"><span class="pre">swap</span></tt> function takes a set of key axes that will be moved to value axes, and value axes that will be broken up to become key axes. By convention, the key axes that are swapped to value axes are placed <em>after</em> the split, and the value axes that move to the key axes are placed <em>before</em> the split. In both cases, the new axes have the same order as in the starting array. As examples,</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sc</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>
 <span class="go">(2, 3, 4)</span>
@@ -254,15 +254,15 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
 <p>Swapping can be expensive because it incurs a shuffle, but we have leveraged our experience doing these operations at scale to make it as efficient as possible.</p>
 <p>To understand our solution, consider two extremes. One one end, we could collect the entire array locally, reslice locally, and redistribute &#8211; but that will fail on out-of-memory datasets. On the other end, we could break up the values into singletons, tag each with an index, and do a massive and expensive shuffle to put them back together.</p>
 <p>Our approach is in the middle. We break up the values into &#8220;chunks&#8221;, only along dimensions that are being moved, and use chunk sizes that minimize the number of objects shuffled while avoiding objects that are too large (this is a configurable parameter, but our default has proven efficient at scale in practice).</p>
-<p>The entire process is lazy, which helps when composing it with other lazy operations, and properties like <code class="docutils literal"><span class="pre">shape</span></code> and <code class="docutils literal"><span class="pre">split</span></code> are automatically propagated.</p>
+<p>The entire process is lazy, which helps when composing it with other lazy operations, and properties like <tt class="docutils literal"><span class="pre">shape</span></tt> and <tt class="docutils literal"><span class="pre">split</span></tt> are automatically propagated.</p>
 </div>
 <div class="section" id="transposing-reshaping">
 <h2>Transposing / reshaping<a class="headerlink" href="#transposing-reshaping" title="Permalink to this headline">¶</a></h2>
-<p>The user-facing functions <code class="docutils literal"><span class="pre">transpose</span></code> and <code class="docutils literal"><span class="pre">reshape</span></code> are generally special cases of <code class="docutils literal"><span class="pre">swap</span></code>, with one small modification: if the desired shape can be achieved by separately and independently manipulating the keys axes or values axes, we can avoid a shuffle, and just apply the neccessary operations via a <code class="docutils literal"><span class="pre">map</span></code>. We identify the neccessary steps for any given requested <code class="docutils literal"><span class="pre">transpose</span></code> or <code class="docutils literal"><span class="pre">reshape</span></code>, and choose the most efficient execution. As with <code class="docutils literal"><span class="pre">swap</span></code>, these operations are lazy, though array properties are immediately updated.</p>
+<p>The user-facing functions <tt class="docutils literal"><span class="pre">transpose</span></tt> and <tt class="docutils literal"><span class="pre">reshape</span></tt> are generally special cases of <tt class="docutils literal"><span class="pre">swap</span></tt>, with one small modification: if the desired shape can be achieved by separately and independently manipulating the keys axes or values axes, we can avoid a shuffle, and just apply the neccessary operations via a <tt class="docutils literal"><span class="pre">map</span></tt>. We identify the neccessary steps for any given requested <tt class="docutils literal"><span class="pre">transpose</span></tt> or <tt class="docutils literal"><span class="pre">reshape</span></tt>, and choose the most efficient execution. As with <tt class="docutils literal"><span class="pre">swap</span></tt>, these operations are lazy, though array properties are immediately updated.</p>
 </div>
 <div class="section" id="stacking-chunking">
 <h2>Stacking / chunking<a class="headerlink" href="#stacking-chunking" title="Permalink to this headline">¶</a></h2>
-<p>For more fine-grained control over applying parallel operations to distributed arrays, we provide methods for both <a class="reference internal" href="spark-stacking.html#stacking"><span>Stacking</span></a> (which groups records together for faster vectorized operations) and <a class="reference internal" href="spark-chunking.html#chunking"><span>Chunking</span></a> (which breaks records apart for increased parallelization).</p>
+<p>For more fine-grained control over applying parallel operations to distributed arrays, we provide methods for both <a class="reference internal" href="spark-stacking.html#stacking"><em>Stacking</em></a> (which groups records together for faster vectorized operations) and <a class="reference internal" href="spark-chunking.html#chunking"><em>Chunking</em></a> (which breaks records apart for increased parallelization).</p>
 </div>
 </div>
 
@@ -303,7 +303,7 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.0.dev',
+            VERSION:'0.2.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
@@ -312,7 +312,7 @@ axes, while each value is a NumPy <code class="docutils literal"><span class="pr
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
